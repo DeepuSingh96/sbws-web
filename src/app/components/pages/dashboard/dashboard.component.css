@@ -1,0 +1,90 @@
+/* Structure */
+.example-container {
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+   
+    overflow: auto;
+  }
+  
+  .button-container{
+    margin: 40px;
+  
+  }
+  
+  .button{
+    margin: 2px;
+  }
+  
+  /* Toolbar */
+  .spacer {
+    flex: 1 1 auto;
+  }
+  
+  /* Filter */
+  .form {
+    min-height: 56px;
+    max-height: 56px;
+    margin-left: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 15px;
+    justify-content: space-between;
+    border-bottom: 1px solid transparent;
+  }
+  
+  ::ng-deep th.mat-header-cell{
+    width: 180px;
+    min-width: 180px;
+  }
+  
+  .mat-cell:nth-child(1),
+  .mat-header-cell:nth-child(1){
+    flex: 0 0 6%;
+  }
+  
+  .mat-cell:nth-child(2),
+  .mat-header-cell:nth-child(2){
+    flex: 0 0 30%;
+  }
+  
+  .mat-cell:nth-child(3),
+  .mat-header-cell:nth-child(3){
+    flex: 0 0 6%;
+  }
+  
+  .mat-cell:nth-child(7),
+  .mat-header-cell:nth-child(7){
+    flex: 0 0 7%;
+  }
+  
+  
+  
+  
+  .modal-header {
+    padding: 2px 16px;
+    /* background-color: #5cb85c; */
+    color: white;
+  }
+  
+  .modal-footer {
+    padding: 14px 5px;
+    /* background-color: #5cb85c; */
+    color: white;
+  }
+  
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #eee;
+  }
+  
+  #id01
+  {
+    display: none;
+  }

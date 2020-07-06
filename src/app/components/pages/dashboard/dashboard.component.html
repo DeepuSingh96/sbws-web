@@ -1,0 +1,198 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<mat-toolbar color="primary">
+  <span>SBWS Tracker</span>
+  <span style="padding-left:450px;">Welcome {{username}}</span>
+  <a><span style="padding-left:80px;" (click)=LogOut()>Logout</span></a>
+
+</mat-toolbar>
+
+
+<div class="button-container">
+  <button  mat-raised-button color="primary" class="button">Edit</button>
+  <button mat-raised-button color="primary" (click)="removeSelectedRows()" class="button"> Delete Selected Rows</button>
+  <button mat-raised-button color="primary" (click)="onCreate()" class="button" > Add </button>
+  <button mat-raised-button color="primary" (click)="exportExcel()" class="button" > Export </button>
+  <button mat-raised-button color="primary" onclick="document.getElementById('id01').style.display='block'" class="button" >Custom Export </button>
+
+</div>
+
+<div class="w3-container">
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content">
+      <mat-toolbar color="primary">
+        <span>Select Columns</span>
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      </mat-toolbar>
+      <div class="w3-container">
+        <div *ngFor="let cat of categories">
+             <input (change)="onChange(cat, $event.target.checked)"name="{{ cat.name }}" type="checkbox" id="{{cat.name}}">
+             <label for="{{cat.name}}">{{cat.name |uppercase}}</label>
+         </div>
+      </div>
+      <footer class="modal-footer">
+        <button mat-raised-button color="primary" mat-raised-button (click)="exportExcel()">Export Report</button>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<div class="form">
+  <mat-form-field floatPlaceholder="never" color="accent">
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. SL">
+  </mat-form-field>
+</div>
+
+<div class="example-container mat-elevation-z8">
+
+<table mat-table [dataSource]="dataSource" matSort>
+
+<!--<div class="example-container mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort>
+
+ Checkbox Column -->
+  <ng-container matColumnDef="select" >
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+    </ng-container>
+
+    <!-- Emp ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Emp ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Emp Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+
+    <!-- Account Column -->
+    <ng-container matColumnDef="account">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Account </th>
+      <td mat-cell *matCellDef="let element"> {{element.account}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="team">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Team </th>
+      <td mat-cell *matCellDef="let element"> {{element.team}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="coid">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> COID </th>
+      <td mat-cell *matCellDef="let element"> {{element.coid}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="contactno">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact No </th>
+      <td mat-cell *matCellDef="let element"> {{element.contactno}} </td>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="presentlocation">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Present Location </th>
+      <td mat-cell *matCellDef="let element"> {{element.presentlocation}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="worklocation">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Work Location </th>
+      <td mat-cell *matCellDef="let element"> {{element.worklocation}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="parentunit">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Parent Unit </th>
+      <td mat-cell *matCellDef="let element"> {{element.parentunit}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="modeofworking">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Mode of Working </th>
+      <td mat-cell *matCellDef="let element"> {{element.modeofworking}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="assetid">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Asset ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.assetid}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="sbwsenabled">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> SBWS Enabled </th>
+      <td mat-cell *matCellDef="let element"> {{element.sbwsenabled}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="leadname">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Lead Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.leadname}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="stayinginpg">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Staying In PG </th>
+      <td mat-cell *matCellDef="let element"> {{element.stayinginpg}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="wifiadaptor">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> WiFi Adaptor </th>
+      <td mat-cell *matCellDef="let element"> {{element.wifiadaptor}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="upsbytcs">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> UPS Provided by TCS</th>
+      <td mat-cell *matCellDef="let element"> {{element.upsbytcs}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="typeofinternetconnect">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Types of Internet Connection </th>
+      <td mat-cell *matCellDef="let element"> {{element.typeofinternetconnect}} </td>
+    </ng-container>
+ -->
+
+ <ng-container matColumnDef="star" stickyEnd>
+  <th mat-header-cell *matHeaderCellDef></th>
+  <td mat-cell *matCellDef="let element">
+    <mat-icon>more_vert</mat-icon>
+  </td>
+</ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; true"></tr>
+     <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      (click)="selection.toggle(row)">
+  </table>
+
+  <!-- <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
+    No results
+  </div> -->
+
+  <mat-paginator #paginator
+  [length]="dataSource.filteredData.length"
+  [pageIndex]="0"
+  [pageSize]="5"
+  [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+</div>
+
+<!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->
