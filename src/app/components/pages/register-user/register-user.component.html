@@ -13,13 +13,13 @@
                <mat-form-field>
                  <input
                    matInput
-                   placeholder="Email"
+                   placeholder="Username"
                    required
-                   name="email"
+                   name="username"
                    ngModel
                    #email="ngModel"
-                   [(ngModel)]="enterEmail">
-                   <mat-error *ngIf="email.invalid">Email is required</mat-error>
+                   [(ngModel)]="enterUsername">
+                   <mat-error *ngIf="username.invalid">Email is required</mat-error>
                  <mat-icon matSuffix>email</mat-icon>
                </mat-form-field>
                <mat-form-field>
