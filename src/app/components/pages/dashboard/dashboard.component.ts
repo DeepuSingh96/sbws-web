@@ -9,6 +9,7 @@ import { CustomExporter } from '../dashboard/custom-exporter';
 import * as XLSX from 'xlsx';
 import { ActivatedRoute,Router } from '@angular/router';
 import {AuthenticationService} from '../../../service/authentication/authentication.service';
+import { DashboardService } from '../../../service/dashboard/dashboard.service';
 
 
 
@@ -21,22 +22,38 @@ export class DashboardComponent {
   title(title: any) {
     throw new Error("Method not implemented.");
   }
-  displayedColumns = ['select', 'position', 'id', 'name', 'account', 'team', 'coid', 'contactno'];
-  dataSource = new MatTableDataSource<Element>(ELEMENT_DATA);
+  ELEMENT_DATA: Element[] = [];
+  displayedColumns = ['select', 'employeeNo', 'employeeName', 'accountId', 'teamName', 'coId','presentLocation',
+'workLocation','parentUnit','modeOfWorking','assetId','sbwsEnabled','leadSupervisorName','stayingInPg','tcsDesktop','typeOfInternetConnection'];
+ dataSource = new MatTableDataSource<Element>(this.ELEMENT_DATA);
   selection = new SelectionModel<Element>(true, []);
-  data = Object.assign( ELEMENT_DATA);
+  data = Object.assign(this.ELEMENT_DATA);
   AText :Array<any> = [];
 
   emailFormArray: Array<any> = [];
   selection1=[];
   categories = [
-    {name :"position", id: 0},
-    {name :"id", id: 1},
-    {name :"name", id: 2},
-    {name :"account", id: 3},
-    {name :"team", id: 4},
-    {name :"coid", id: 5},
-    {name :"contactno", id: 6}
+{name :"position", id: 0},
+{name :"id", id: 1},
+{name :"name", id: 2},
+{name :"account", id: 3},
+{name :"team", id: 4},
+{name :"coid", id: 5},
+{name :"contactno", id: 6},
+{name :"altcontactno", id: 7},
+{name :"address", id: 8},
+{name :"presentlocation", id: 9},
+{name :"worklocation", id: 10},
+{name :"parentunit", id: 11},
+{name :"modeofworking", id: 12},
+{name :"assetid", id: 13},
+{name :"sbwsenabled", id: 14},
+{name :"leadname", id: 15},
+{name :"stayinginpg", id: 16},
+{name :"tcsdesktop", id: 17},
+{name :"wifiadaptor", id: 18},
+{name :"upsbytcs", id: 19},
+{name :"typeofinternetconnect", id: 20}
   ];
 
   customExporter: CustomExporter;
@@ -46,7 +63,9 @@ export class DashboardComponent {
 
   constructor(public dialog : MatDialog,private route:ActivatedRoute,
               public authenticate:AuthenticationService,
-              private router:Router) { }
+              private router:Router,
+              private dashboardService:DashboardService
+              ) { }
   username = ''
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -54,6 +73,17 @@ export class DashboardComponent {
     this.customExporter = new CustomExporter();
     // console.log(this.route.snapshot.params['username']);
     this.username=this.route.snapshot.params['username'];
+    this.refreshDashboard();
+  }
+
+  refreshDashboard()
+  {
+    this.dashboardService.retrieveDashboard(this.username).subscribe(
+      response => {
+        console.log(response);
+        this.ELEMENT_DATA=response
+      }
+    )
   }
 
   LogOut()
@@ -91,7 +121,7 @@ export class DashboardComponent {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
+    // return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.position + 1}`;
   }
 
   removeSelectedRows() {
@@ -157,74 +187,22 @@ this.displayedColumns.forEach(el => {
 
 
 export interface Element {
-  name: string;
-  position: number;
-  id: number;
-  account: string;
-  team:string;
-  coid:string;
-  contactno:number;
+  slNo:string,
+  employeeNo:number,
+  employeeName:string,
+  accountId:number,
+  teamName:string,
+  coId:string,
+  presentLocation:string,
+  workLocation:string,
+  parentUnit:string,
+  modeOfWorking:string,
+  assetId:string,
+  sbwsEnabled:string,
+  leadSupervisorName:string,
+  stayingInPg:string,
+  tcsDesktop:string,
+  typeOfInternetConnection:string,
 }
 
-const ELEMENT_DATA: Element[] = [
-  {position: 1, name: 'Rashmi', id: 1337672, account: 'SL', team:'Java',
-  coid:'CO60598', contactno: 9964183076},
-  {position: 2, name: 'AAAA', id: 1337672, account: 'SL',team:'Java',
-  coid:'CO60598', contactno: 9964183076},
-  {position: 3, name: 'AAAA', id: 1337672, account: 'SL',team:'Java',
-  coid:'CO60598', contactno: 9964183076},
-  {position: 4, name: 'AAAA', id: 1337672, account: 'SL',team:'Java',
-  coid:'CO60598', contactno: 9964183076},
-  {position: 5, name: 'AAAA', id: 1337672, account: 'SL',team:'Java',
-  coid:'CO60598', contactno: 9964183076},
-  {position: 6, name: 'AAAA', id: 1337672, account: 'SL',team:'Java',
-  coid:'CO60598', contactno: 9964183076},/*
-  {position: 3, name: 'BBBB', id: 1337672, account: 'SL',team:'Java',
-  coid:'CO60598', contactno: 9964183076, address:'Whitefield, Bangalore',
-  presentlocation:'Bangalore', worklocation:'Offshore', parentunit:'BFSI, UK 2.3',
-  modeofworking:'TCS Desktop',assetid:'01HW0212332', sbwsenabled:'Yes',
-  leadname:'Shwetha Shetty', stayinginpg:'No', wifiadaptor: 'No',
-  upsbytcs: 'No', typeofinternetconnect:'WiFi'},
-  {position: 4, name: 'CCCC', id: 1337672, account: 'SL', team:'Java',
-  coid:'CO60598', contactno: 9964183076, address:'Whitefield, Bangalore',
-  presentlocation:'Bangalore', worklocation:'Offshore', parentunit:'BFSI, UK 2.3',
-  modeofworking:'TCS Desktop',assetid:'01HW0212332', sbwsenabled:'Yes',
-  leadname:'Shwetha Shetty', stayinginpg:'No', wifiadaptor: 'No',
-  upsbytcs: 'No', typeofinternetconnect:'WiFi'},
-  {position: 5, name: 'DDDD', id: 1337672, account: 'SL', team:'Java',
-  coid:'CO60598', contactno: 9964183076, address:'Whitefield, Bangalore',
-  presentlocation:'Bangalore', worklocation:'Offshore', parentunit:'BFSI, UK 2.3',
-  modeofworking:'TCS Desktop',assetid:'01HW0212332', sbwsenabled:'Yes',
-  leadname:'Shwetha Shetty', stayinginpg:'No', wifiadaptor: 'No',
-  upsbytcs: 'No', typeofinternetconnect:'WiFi'},
-  {position: 6, name: 'FFFFF', id: 1337672, account: 'SL', team:'Java',
-  coid:'CO60598', contactno: 9964183076, address:'Whitefield, Bangalore',
-  presentlocation:'Bangalore', worklocation:'Offshore', parentunit:'BFSI, UK 2.3',
-  modeofworking:'TCS Desktop',assetid:'01HW0212332', sbwsenabled:'Yes',
-  leadname:'Shwetha Shetty', stayinginpg:'No', wifiadaptor: 'No',
-  upsbytcs: 'No', typeofinternetconnect:'WiFi'},
-  {position: 7, name: 'GGGG', id: 1337672, account: 'SL', team:'Java',
-  coid:'CO60598', contactno: 9964183076, address:'Whitefield, Bangalore',
-  presentlocation:'Bangalore', worklocation:'Offshore', parentunit:'BFSI, UK 2.3',
-  modeofworking:'TCS Desktop',assetid:'01HW0212332', sbwsenabled:'Yes',
-  leadname:'Shwetha Shetty', stayinginpg:'No', wifiadaptor: 'No',
-  upsbytcs: 'No', typeofinternetconnect:'WiFi'},
-  {position: 8, name: 'HHHH', id: 1337672, account: 'SL', team:'Java',
-  coid:'CO60598', contactno: 9964183076, address:'Whitefield, Bangalore',
-  presentlocation:'Bangalore', worklocation:'Offshore', parentunit:'BFSI, UK 2.3',
-  modeofworking:'TCS Desktop',assetid:'01HW0212332', sbwsenabled:'Yes',
-  leadname:'Shwetha Shetty', stayinginpg:'No', wifiadaptor: 'No',
-  upsbytcs: 'No', typeofinternetconnect:'WiFi'},
-  {position: 9, name: 'IIII', id: 1337672, account: 'SL', team:'Java',
-  coid:'CO60598', contactno: 9964183076, address:'Whitefield, Bangalore',
-  presentlocation:'Bangalore', worklocation:'Offshore', parentunit:'BFSI, UK 2.3',
-  modeofworking:'TCS Desktop',assetid:'01HW0212332', sbwsenabled:'Yes',
-  leadname:'Shwetha Shetty', stayinginpg:'No', wifiadaptor: 'No',
-  upsbytcs: 'No', typeofinternetconnect:'WiFi'},
-  {position: 10, name: 'JJJJ', id: 1337672, account: 'SL', team:'Java',
-  coid:'CO60598', contactno: 9964183076, address:'Whitefield, Bangalore',
-  presentlocation:'Bangalore', worklocation:'Offshore', parentunit:'BFSI, UK 2.3',
-  modeofworking:'TCS Desktop',assetid:'01HW0212332', sbwsenabled:'Yes',
-  leadname:'Shwetha Shetty', stayinginpg:'No', wifiadaptor: 'No',
-  upsbytcs: 'No', typeofinternetconnect:'WiFi'}, */
-];
+const ELEMENT_DATA: Element[] = [];
