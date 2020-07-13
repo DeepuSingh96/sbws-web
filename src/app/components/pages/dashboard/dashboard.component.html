@@ -39,9 +39,9 @@
         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
       </mat-toolbar>
       <div class="w3-container">
-        <div *ngFor="let cat of categories">
-             <input (change)="onChange(cat, $event.target.checked)"name="{{ cat.name }}" type="checkbox" id="{{cat.name}}">
-             <label for="{{cat.name}}">{{cat.name |uppercase}}</label>
+        <div *ngFor="let column of customExportColumns">
+             <input (change)="onChange(column, $event.target.checked)"name="{{ column.name }}" type="checkbox" id="{{column.name}}">
+             <label for="{{column.name}}">{{column.name |uppercase}}</label>
          </div>
       </div>
       <footer class="modal-footer">

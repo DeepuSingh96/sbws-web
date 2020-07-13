@@ -31,8 +31,8 @@ export class DashboardComponent {
   AText :Array<any> = [];
 
   emailFormArray: Array<any> = [];
-  selection1=[];
-  categories = [
+  exportSelection=[];
+  customExportColumns = [
 // {name :"position", id: 0},
 {name :"employeeNo", id: 1},
 {name :"employeeName", id: 2},
@@ -154,12 +154,12 @@ export class DashboardComponent {
 
   createsample()
 {
-this.selection1=[];
+this.exportSelection=[];
 this.displayedColumns.forEach(el => {
   if (this.AText.find(el1 => el1 === el)) {
-    this.selection1.push(null);
+    this.exportSelection.push(null);
     } else {
-      this.selection1.push({"hidden": true});
+      this.exportSelection.push({"hidden": true});
   }
 });
 }
@@ -169,7 +169,7 @@ this.displayedColumns.forEach(el => {
  if(this.AText.length!=0)
  {
    this.createsample();
-   workSheet['!cols'] = this.selection1;
+   workSheet['!cols'] = this.exportSelection;
  }
   const workBook: XLSX.WorkBook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workBook, workSheet, 'SheetName');
