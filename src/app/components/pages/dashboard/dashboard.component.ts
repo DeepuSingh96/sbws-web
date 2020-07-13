@@ -33,28 +33,23 @@ export class DashboardComponent {
   emailFormArray: Array<any> = [];
   selection1=[];
   categories = [
-{name :"position", id: 0},
-{name :"id", id: 1},
-{name :"name", id: 2},
-{name :"account", id: 3},
-{name :"team", id: 4},
-{name :"coid", id: 5},
-{name :"contactno", id: 6},
-{name :"altcontactno", id: 7},
-{name :"address", id: 8},
-{name :"presentlocation", id: 9},
-{name :"worklocation", id: 10},
-{name :"parentunit", id: 11},
-{name :"modeofworking", id: 12},
-{name :"assetid", id: 13},
-{name :"sbwsenabled", id: 14},
-{name :"leadname", id: 15},
-{name :"stayinginpg", id: 16},
-{name :"tcsdesktop", id: 17},
-{name :"wifiadaptor", id: 18},
-{name :"upsbytcs", id: 19},
-{name :"typeofinternetconnect", id: 20}
-  ];
+// {name :"position", id: 0},
+{name :"employeeNo", id: 1},
+{name :"employeeName", id: 2},
+{name :"accountId", id: 3},
+{name :"teamName", id: 4},
+{name :"coId", id: 5},
+{name :"presentLocation", id: 6},
+{name :"workLocation", id: 7},
+{name :"parentUnit", id: 8},
+{name :"modeOfWorking", id: 9},
+{name :"assetId", id: 10},
+{name :"sbwsEnabled", id: 11},
+{name :"leadSupervisorName", id: 12},
+{name :"stayingInPg", id: 13},
+{name :"tcsDesktop", id: 14},
+{name :"typeOfInternetConnection", id: 15},
+];
 
   customExporter: CustomExporter;
 
@@ -105,7 +100,7 @@ export class DashboardComponent {
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
+    const numRows = this.ELEMENT_DATA.length;
     return numSelected === numRows;
   }
 
@@ -113,7 +108,7 @@ export class DashboardComponent {
   masterToggle() {
     this.isAllSelected() ?
         this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
+        this.ELEMENT_DATA.forEach(row => this.selection.select(row));
   }
 
   /** The label for the checkbox on the passed row */
@@ -170,7 +165,7 @@ this.displayedColumns.forEach(el => {
 }
 
   exportExcel() {
-  const workSheet = XLSX.utils.json_to_sheet(this.dataSource.data, {header:[]});
+  const workSheet = XLSX.utils.json_to_sheet(this.ELEMENT_DATA, {header:[]});
  if(this.AText.length!=0)
  {
    this.createsample();
