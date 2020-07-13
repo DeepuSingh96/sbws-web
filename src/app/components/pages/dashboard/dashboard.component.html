@@ -38,9 +38,22 @@
         <span>Select Columns</span>
         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
       </mat-toolbar>
+      <!-- <div class="container">
+        <div class="text-center mt-5">
+          <div class="row">
+              <div class="col-md-6">
+                <input type="checkbox" [(ngModel)]="masterSelected" name="list_name" value="m1" (change)="checkUncheckAll()"/> <strong>Select/ Unselect All</strong>
+                <div class="list-group-item" *ngFor="let item of customExportColumns">
+                  <input type="checkbox" [(ngModel)]="item.isSelected" name="list_name" value="{{item.name}}" (change)="onChange(item, $event.target.checked)"/>
+                  {{item.name}}
+                </div> 
+              </div>
+          </div>
+        </div>
+      </div> -->
       <div class="w3-container">
         <div *ngFor="let column of customExportColumns">
-             <input (change)="onChange(column, $event.target.checked)"name="{{ column.name }}" type="checkbox" id="{{column.name}}">
+             <input (change)="onChange(column, $event.target.checked)" name="{{ column.name }}" type="checkbox" id="{{column.name}}">
              <label for="{{column.name}}">{{column.name |uppercase}}</label>
          </div>
       </div>
@@ -59,15 +72,14 @@
 
 <div class="example-container mat-elevation-z8">
 
-<table mat-table [dataSource]="ELEMENT_DATA" matSort>
-
+<table mat-table [dataSource]="dataSource" matSort>
 <!--<div class="example-container mat-elevation-z8">
 <table mat-table [dataSource]="dataSource" matSort>
 
  Checkbox Column -->
   <ng-container matColumnDef="select" >
-    <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? masterToggle() : null"
+    <th class="defaultheader" mat-header-cell *matHeaderCellDef>
+      <mat-checkbox class="defaultheader" (change)="$event ? masterToggle() : null"
                     [checked]="selection.hasValue() && isAllSelected()"
                     [indeterminate]="selection.hasValue() && !isAllSelected()"
                     [aria-label]="checkboxLabel()">
@@ -90,92 +102,92 @@
 
     <!-- Emp ID Column -->
     <ng-container matColumnDef="employeeNo">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee Number </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Employee Number </th>
       <td mat-cell *matCellDef="let element"> {{element.employeeNo}} </td>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="employeeName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee Name </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Employee Name </th>
       <td mat-cell *matCellDef="let element"> {{element.employeeName}} </td>
     </ng-container>
 
 
     <!-- Account Column -->
     <ng-container matColumnDef="accountId">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Account Name </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Account Name </th>
       <td mat-cell *matCellDef="let element"> {{element.accountId}} </td>
     </ng-container>
 
      <!-- Team Column -->
     <ng-container matColumnDef="teamName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Team Name </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Team Name </th>
       <td mat-cell *matCellDef="let element"> {{element.teamName}} </td>
     </ng-container>
 
      <!-- COID Column -->
     <ng-container matColumnDef="coId">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> COID </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> COID </th>
       <td mat-cell *matCellDef="let element"> {{element.coId}} </td>
     </ng-container>
 
      <!-- Address Column -->
     <ng-container matColumnDef="presentLocation">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Present Address </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Present Address </th>
       <td mat-cell *matCellDef="let element"> {{element.presentLocation}} </td>
     </ng-container>
 
      <!-- Location Column -->
     <ng-container matColumnDef="workLocation">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Work Location </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Work Location </th>
       <td mat-cell *matCellDef="let element"> {{element.workLocation}} </td>
     </ng-container>
 
      <!-- Parent Unit Column -->
     <ng-container matColumnDef="parentUnit">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Parent Unit </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Parent Unit </th>
       <td mat-cell *matCellDef="let element"> {{element.parentUnit}} </td>
     </ng-container>
 
      <!-- Mode of working Column -->
     <ng-container matColumnDef="modeOfWorking">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Mode of Working </th>
+      <th class="defaultheader"mat-header-cell *matHeaderCellDef mat-sort-header> Mode of Working </th>
       <td mat-cell *matCellDef="let element"> {{element.modeOfWorking}} </td>
     </ng-container>
 
      <!-- Asset id Column -->
     <ng-container matColumnDef="assetId">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Asset ID </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Asset ID </th>
       <td mat-cell *matCellDef="let element"> {{element.assetId}} </td>
     </ng-container>
 
      <!-- SBWS Status Column -->
     <ng-container matColumnDef="sbwsEnabled">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> SBWS Enbled </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> SBWS Enbled </th>
       <td mat-cell *matCellDef="let element"> {{element.sbwsEnabled}} </td>
     </ng-container>
 
      <!-- Lead Column -->
     <ng-container matColumnDef="leadSupervisorName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Lead/Supervisor Name </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Lead/Supervisor Name </th>
       <td mat-cell *matCellDef="let element"> {{element.leadSupervisorName}} </td>
     </ng-container>
 
      <!-- PG Status Column -->
     <ng-container matColumnDef="stayingInPg">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Staying in PG </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Staying in PG </th>
       <td mat-cell *matCellDef="let element"> {{element.stayingInPg}} </td>
     </ng-container>
 
      <!-- TCS Desktop Column -->
     <ng-container matColumnDef="tcsDesktop">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> TCS Desktop </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> TCS Desktop </th>
       <td mat-cell *matCellDef="let element"> {{element.tcsDesktop}} </td>
     </ng-container>
 
      <!-- Internet Connectivity Column -->
     <ng-container matColumnDef="typeOfInternetConnection">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Internet Connection </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header>Internet Connection </th>
       <td mat-cell *matCellDef="let element"> {{element.typeOfInternetConnection}} </td>
     </ng-container>
 
