@@ -133,6 +133,7 @@ export class DashboardComponent {
    AText :Array<any> = [];
    emailFormArray: Array<any> = [];
    exportSelection=[];
+   masterSelected:boolean;
  
    //List of Column want to show on Custome export popup
    customExportColumns = [
@@ -157,17 +158,16 @@ export class DashboardComponent {
 //helping to add element to generate custom excel report
   onChange(email:any, isChecked: boolean) {
     if(isChecked) {
-      this.emailFormArray.push(email.id);
       this.AText.push(email.name);
     } else {
-      let index = this.emailFormArray.indexOf(email.id);
-      let indexname = this.emailFormArray.indexOf(email.name);
-      this.emailFormArray.splice(index,1);
+      //let index = this.emailFormArray.indexOf(email.id);
+      let indexname = this.AText.indexOf(email.name);
+      //this.emailFormArray.splice(index,1);
       this.AText.splice(indexname,1);
     }
-    // this.masterSelected = this.customExportColumns.every(function(item:any) {
-    //   return item.isSelected == true;
-    // });
+    this.masterSelected = this.customExportColumns.every(function(item:any) {
+      return item.isSelected == true;
+    });
 };
 
   //Helping to create selection for custom report
@@ -184,8 +184,8 @@ this.displayedColumns.forEach(el => {
 };
 
 //Funtion to generate Excel sheet
-  exportExcel() {
-  const workSheet = XLSX.utils.json_to_sheet(this.ELEMENT_DATA, {header:[]});
+exportExcel() {
+const workSheet = XLSX.utils.json_to_sheet(this.ELEMENT_DATA, {header:[]});
  if(this.AText.length!=0)
  {
    this.createsample();
@@ -196,21 +196,22 @@ this.displayedColumns.forEach(el => {
   XLSX.writeFile(workBook, 'filename.xlsx');
 };
 
-masterSelected:boolean;
-checkedList:any;
 checkUncheckAll() {
+  this.exportSelection=[];
   for (var i = 0; i < this.customExportColumns.length; i++) {
     this.customExportColumns[i].isSelected = this.masterSelected;
-    console.log(this.customExportColumns[i].isSelected)
-    //alert('test');
+    if(this.customExportColumns[i].isSelected) {
+      this.AText.push(this.customExportColumns[i].name);
+    } else {
+      let indexname = this.AText.indexOf(this.customExportColumns[i].name);
+      this.AText.splice(indexname,1);
+    }
   }
 };
 
 isAllSelectedCustomerepoert() {
-  alert('test');
   this.masterSelected = this.customExportColumns.every(function(item:any) {
-      return item.isSelected == true;
-      
+      return item.isSelected == true;  
     })
 };
 };
