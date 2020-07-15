@@ -88,3 +88,16 @@
   {
     display: none;
   }
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .defaultheader
+  {
+    background-color: #0033c4;
+    color: white;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  

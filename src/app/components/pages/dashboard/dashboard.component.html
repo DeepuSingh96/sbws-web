@@ -1,12 +1,26 @@
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
 
-<mat-toolbar color="primary">
-  <span>SBWS Tracker</span>
-  <span style="padding-left:450px;">Welcome {{username}}</span>
-  <a><span style="padding-left:80px;" (click)=LogOut()>Logout</span></a>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span>SBWS Tracker</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button [matMenuTriggerFor]="dropdownMenu">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar-row>
+  </mat-toolbar>
 
-</mat-toolbar>
-
+<!-- Open nav bar for profile and logout -->
+<mat-menu #dropdownMenu>
+  <a mat-menu-item>
+    <mat-icon>account_circle</mat-icon>
+    <span>{{username}}</span>
+  </a>
+  <a mat-menu-item href="" (click)=LogOut()>
+    <mat-icon>exit_to_app</mat-icon>
+    <span>Logout</span>
+  </a>
+</mat-menu>
 
 <div class="button-container">
   <button  mat-raised-button color="primary" class="button">Edit</button>
@@ -24,12 +38,25 @@
         <span>Select Columns</span>
         <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
       </mat-toolbar>
-      <div class="w3-container">
-        <div *ngFor="let cat of categories">
-             <input (change)="onChange(cat, $event.target.checked)"name="{{ cat.name }}" type="checkbox" id="{{cat.name}}">
-             <label for="{{cat.name}}">{{cat.name |uppercase}}</label>
-         </div>
+      <div class="container">
+        <div class="text-center mt-5">
+          <div class="row">
+              <div class="col-md-6">
+                <input type="checkbox" [(ngModel)]="masterSelected" name="list_name" value="m1" (change)="checkUncheckAll()"/> <strong>Select/ Unselect All</strong>
+                <div class="list-group-item" *ngFor="let item of customExportColumns">
+                  <input type="checkbox" [(ngModel)]="item.isSelected" name="list_name" value="{{item.name}}" (change)="onChange(item, $event.target.checked)"/>
+                  {{item.name}}
+                </div> 
+              </div>
+          </div>
+        </div>
       </div>
+      <!-- <div class="w3-container">
+        <div *ngFor="let column of customExportColumns">
+             <input (change)="onChange(column, $event.target.checked)" name="{{ column.name }}" type="checkbox" id="{{column.name}}">
+             <label for="{{column.name}}">{{column.name |uppercase}}</label>
+         </div>
+      </div> -->
       <footer class="modal-footer">
         <button mat-raised-button color="primary" mat-raised-button (click)="exportExcel()">Export Report</button>
       </footer>
@@ -46,14 +73,13 @@
 <div class="example-container mat-elevation-z8">
 
 <table mat-table [dataSource]="dataSource" matSort>
-
 <!--<div class="example-container mat-elevation-z8">
 <table mat-table [dataSource]="dataSource" matSort>
 
  Checkbox Column -->
   <ng-container matColumnDef="select" >
-    <th mat-header-cell *matHeaderCellDef>
-      <mat-checkbox (change)="$event ? masterToggle() : null"
+    <th class="defaultheader" mat-header-cell *matHeaderCellDef>
+      <mat-checkbox class="defaultheader" (change)="$event ? masterToggle() : null"
                     [checked]="selection.hasValue() && isAllSelected()"
                     [indeterminate]="selection.hasValue() && !isAllSelected()"
                     [aria-label]="checkboxLabel()">
@@ -69,105 +95,102 @@
   </ng-container>
 
     <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-    </ng-container>
+    <!-- <ng-container matColumnDef="slNo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> S No. </th>
+      <td mat-cell *matCellDef="let element"> {{element.slNo}} </td>
+    </ng-container> -->
 
     <!-- Emp ID Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Emp ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    <ng-container matColumnDef="employeeNo">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Employee Number </th>
+      <td mat-cell *matCellDef="let element"> {{element.employeeNo}} </td>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Emp Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <ng-container matColumnDef="employeeName">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Employee Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.employeeName}} </td>
     </ng-container>
 
 
     <!-- Account Column -->
-    <ng-container matColumnDef="account">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Account </th>
-      <td mat-cell *matCellDef="let element"> {{element.account}} </td>
+    <ng-container matColumnDef="accountId">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Account Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.accountId}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="team">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Team </th>
-      <td mat-cell *matCellDef="let element"> {{element.team}} </td>
+     <!-- Team Column -->
+    <ng-container matColumnDef="teamName">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Team Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.teamName}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="coid">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> COID </th>
-      <td mat-cell *matCellDef="let element"> {{element.coid}} </td>
+     <!-- COID Column -->
+    <ng-container matColumnDef="coId">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> COID </th>
+      <td mat-cell *matCellDef="let element"> {{element.coId}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="contactno">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Contact No </th>
-      <td mat-cell *matCellDef="let element"> {{element.contactno}} </td>
+     <!-- Address Column -->
+    <ng-container matColumnDef="presentLocation">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Present Address </th>
+      <td mat-cell *matCellDef="let element"> {{element.presentLocation}} </td>
     </ng-container>
 
-    <!-- <ng-container matColumnDef="address">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
-      <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+     <!-- Location Column -->
+    <ng-container matColumnDef="workLocation">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Work Location </th>
+      <td mat-cell *matCellDef="let element"> {{element.workLocation}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="presentlocation">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Present Location </th>
-      <td mat-cell *matCellDef="let element"> {{element.presentlocation}} </td>
+     <!-- Parent Unit Column -->
+    <ng-container matColumnDef="parentUnit">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Parent Unit </th>
+      <td mat-cell *matCellDef="let element"> {{element.parentUnit}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="worklocation">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Work Location </th>
-      <td mat-cell *matCellDef="let element"> {{element.worklocation}} </td>
+     <!-- Mode of working Column -->
+    <ng-container matColumnDef="modeOfWorking">
+      <th class="defaultheader"mat-header-cell *matHeaderCellDef mat-sort-header> Mode of Working </th>
+      <td mat-cell *matCellDef="let element"> {{element.modeOfWorking}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="parentunit">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Parent Unit </th>
-      <td mat-cell *matCellDef="let element"> {{element.parentunit}} </td>
+     <!-- Asset id Column -->
+    <ng-container matColumnDef="assetId">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Asset ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.assetId}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="modeofworking">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Mode of Working </th>
-      <td mat-cell *matCellDef="let element"> {{element.modeofworking}} </td>
+     <!-- SBWS Status Column -->
+    <ng-container matColumnDef="sbwsEnabled">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> SBWS Enbled </th>
+      <td mat-cell *matCellDef="let element"> {{element.sbwsEnabled}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="assetid">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Asset ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.assetid}} </td>
+     <!-- Lead Column -->
+    <ng-container matColumnDef="leadSupervisorName">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Lead/Supervisor Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.leadSupervisorName}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="sbwsenabled">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> SBWS Enabled </th>
-      <td mat-cell *matCellDef="let element"> {{element.sbwsenabled}} </td>
+     <!-- PG Status Column -->
+    <ng-container matColumnDef="stayingInPg">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Staying in PG </th>
+      <td mat-cell *matCellDef="let element"> {{element.stayingInPg}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="leadname">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Lead Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.leadname}} </td>
+     <!-- TCS Desktop Column -->
+    <ng-container matColumnDef="tcsDesktop">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> TCS Desktop </th>
+      <td mat-cell *matCellDef="let element"> {{element.tcsDesktop}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="stayinginpg">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Staying In PG </th>
-      <td mat-cell *matCellDef="let element"> {{element.stayinginpg}} </td>
+     <!-- Internet Connectivity Column -->
+    <ng-container matColumnDef="typeOfInternetConnection">
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header>Internet Connection </th>
+      <td mat-cell *matCellDef="let element"> {{element.typeOfInternetConnection}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="wifiadaptor">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> WiFi Adaptor </th>
-      <td mat-cell *matCellDef="let element"> {{element.wifiadaptor}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="upsbytcs">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> UPS Provided by TCS</th>
-      <td mat-cell *matCellDef="let element"> {{element.upsbytcs}} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="typeofinternetconnect">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Types of Internet Connection </th>
-      <td mat-cell *matCellDef="let element"> {{element.typeofinternetconnect}} </td>
-    </ng-container>
- -->
 
  <ng-container matColumnDef="star" stickyEnd>
   <th mat-header-cell *matHeaderCellDef></th>
@@ -183,10 +206,6 @@
       (click)="selection.toggle(row)">
   </table>
 
-  <!-- <div class="no-results" [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
-    No results
-  </div> -->
-
   <mat-paginator #paginator
   [length]="dataSource.filteredData.length"
   [pageIndex]="0"
@@ -194,5 +213,3 @@
   [pageSizeOptions]="[5, 10, 25, 100]">
 </mat-paginator>
 </div>
-
-<!-- <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator> -->

@@ -6,13 +6,13 @@
   
   <form [formGroup]="addNewEmployee">
       <mat-grid-list cols="3" rowHeight="100px">
-        <mat-grid-tile>
+        <!-- <mat-grid-tile>
             <mat-form-field appearance="outline">
                 <mat-label>Sl. No</mat-label>
                 <input  formControlName="slNo" matInput>
                 <mat-error *ngIf="emp.slNo.errors.required">Sl.No is Required</mat-error>
               </mat-form-field>
-        </mat-grid-tile>
+        </mat-grid-tile> -->
         <mat-grid-tile>
             <mat-form-field appearance="outline">
                 <mat-label>Employee Number</mat-label>
@@ -175,7 +175,7 @@
       <div class="float-right" mat-dialog-actions>
         <div class="button-container">
             <button  mat-raised-button color="primary" (click)="onSubmit()"  [disabled]="!addNewEmployee.valid" class="button">Save</button>
-            <button mat-button mat-dialog-close mat-raised-button color="primary" class="button"> Cancel</button>
+            <!-- <button mat-button mat-dialog-close mat-raised-button color="primary" class="button"> Cancel</button> -->
             <button mat-button mat-dialog-close mat-raised-button color="primary" class="button"> Close </button>
           </div>
       </div>
