@@ -1,0 +1,18 @@
+{
+    "employeeNo":"132",
+    "employeeName":"Kanchana",
+    "account_name":"SL",
+    "teamName":"SPICE",
+    "coId":"CO62767",
+    "address":"2nd floor,20th D Cross,Ejipura,Bangalore-560047",
+    "presentLocation":"Bangalore",
+    "workLocation":"Global Axis",
+    "parentUnit":"H Block",
+    "modeOfWorking":"Work from Home",
+    "assetId":"ABCD12345",
+    "sbwsEnabled": "Yes",
+    "leadSupervisorName":"Swetha",
+    "stayingInPg":"No",
+    "tcsDesktop": "No",
+    "typeOfInternetConnection":"Home Wifi"
+}

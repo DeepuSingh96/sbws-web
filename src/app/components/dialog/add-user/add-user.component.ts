@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { MatSelectModule } from '@angular/material/select';
 import { NgModel, FormGroup, FormControl } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-add-user',
@@ -11,7 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./add-user.component.css']
 })
 export class AddUserComponent implements OnInit {
-
+  @ViewChild('closebutton') closebutton;
   
   constructor() { }
 
