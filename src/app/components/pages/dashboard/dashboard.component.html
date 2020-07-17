@@ -1,26 +1,44 @@
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">  
 
-    <mat-toolbar color="primary">
-      <mat-toolbar-row>
-        <span>SBWS Tracker</span>
-        <span class="example-spacer"></span>
-        <button mat-icon-button [matMenuTriggerFor]="dropdownMenu">
-          <mat-icon>menu</mat-icon>
-        </button>
-      </mat-toolbar-row>
-  </mat-toolbar>
-
-<!-- Open nav bar for profile and logout -->
-<mat-menu #dropdownMenu>
-  <a mat-menu-item>
-    <mat-icon>account_circle</mat-icon>
-    <span>{{username}}</span>
-  </a>
-  <a mat-menu-item href="" (click)=LogOut()>
-    <mat-icon>exit_to_app</mat-icon>
-    <span>Logout</span>
-  </a>
-</mat-menu>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav opened mode="side">
+   <div class="toptoolbar">
+    <p style="font-weight: bold; font-size: medium;"> Mini Othayoth Achuthan</p>
+    <p>{{username}}</p>
+  </div>
+    <mat-divider></mat-divider>
+    <mat-form-field appearance="outline" class="icon">
+  <mat-label>search</mat-label>
+  <input matInput placeholder="type to search">
+  <mat-icon matPrefix >search</mat-icon>
+    </mat-form-field>
+    <mat-toolbar class="toolbar">
+      <mat-icon>explore</mat-icon>
+      <span style="padding-left:15px;">SBWS Dashboard</span>
+    </mat-toolbar>
+    <mat-toolbar class="toolbar1">
+      <mat-icon>archive</mat-icon>
+      <span style="padding-left:15px;">Export</span>
+    </mat-toolbar>
+    <mat-toolbar class="toolbar1">
+      <mat-icon>list</mat-icon>
+      <span style="padding-left:15px;">Reports</span>
+    </mat-toolbar>
+    <mat-toolbar class="toolbar1">
+      <mat-icon>input</mat-icon>
+      <span style="padding-left:15px;">Logout</span>
+    </mat-toolbar>
+  </mat-sidenav>
+  <mat-sidenav-content> 
+<mat-toolbar color="primary">
+  <button mat-icon-button (click)="sidenav.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>SBWS Tracker</span>
+  <span style="padding-left:450px;">Welcome {{username}}</span>
+  <span class="toolbar-spacer" ></span>
+  <span  (click)=LogOut()>Logout</span>
+</mat-toolbar>
 
 <div class="button-container">
   <button  mat-raised-button color="primary" class="button">Edit</button>
@@ -213,3 +231,6 @@
   [pageSizeOptions]="[5, 10, 25, 100]">
 </mat-paginator>
 </div>
+</div>
+</mat-sidenav-content>
+</mat-sidenav-container>

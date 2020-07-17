@@ -100,4 +100,31 @@
     font-size: 14px;
     font-weight: 500;
   }
+  .toolbar-spacer
+  {
+    flex: 1 1 auto;
+  }
+
+  mat-sidenav
+  {
+    width:280px;
+    text-align: center;
+    background-color: whitesmoke;
+  }
+  .icon{
+    margin-top: 30px;
+  }
+  .toolbar{
+      background-color: #0033c4;
+      color: white;
+      height: 40px;
+      width: 100%;
+
+  }
+  .toptoolbar{
+    font-size: small;
+    text-align: center;
+    padding-top: 20px;
+  }
+ 
   
