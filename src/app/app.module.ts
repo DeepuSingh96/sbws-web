@@ -27,6 +27,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { UploadFileComponent } from './components/dialog/upload-file/upload-file.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     EditUserComponent,
     DeleteUserComponent,
     AdminDashboardComponent,
-    ErrorComponent
+    ErrorComponent,
+    UploadFileComponent
   ],
   imports: [
     BrowserModule,
