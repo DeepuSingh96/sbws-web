@@ -41,11 +41,11 @@
 </mat-toolbar>
 
 <div class="button-container">
-  <button  mat-raised-button color="primary" class="button">Edit</button>
-  <button mat-raised-button color="primary" (click)="removeSelectedRows()" class="button"> Delete Selected Rows</button>
-  <button mat-raised-button color="primary" (click)="onCreate()" class="button" > Add </button>
-  <button mat-raised-button color="primary" (click)="exportExcel()" class="button" > Export </button>
-  <button mat-raised-button color="primary" onclick="document.getElementById('id01').style.display='block'" class="button" >Custom Export </button>
+  <button mat-raised-button color="primary" (click)="onCreate()" class="button" > Create Request </button>
+  <button  mat-raised-button color="primary" class="button">Edit Request</button>
+  <button mat-raised-button color="primary" (click)="removeSelectedRows()" class="button"> Delete Selected Request</button>
+  <button mat-raised-button color="primary" (click)="exportExcel()" class="button" > Export Report </button>
+  <button mat-raised-button color="primary" onclick="document.getElementById('id01').style.display='block'" class="button" >Custom Export Report</button>
 
 </div>
 
@@ -120,7 +120,7 @@
 
     <!-- Emp ID Column -->
     <ng-container matColumnDef="employeeNo">
-      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Employee Number </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Employee Id </th>
       <td mat-cell *matCellDef="let element"> {{element.employeeNo}} </td>
     </ng-container>
 
@@ -151,7 +151,7 @@
 
      <!-- Address Column -->
     <ng-container matColumnDef="presentLocation">
-      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Present Address </th>
+      <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Present Location </th>
       <td mat-cell *matCellDef="let element"> {{element.presentLocation}} </td>
     </ng-container>
 
