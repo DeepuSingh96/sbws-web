@@ -92,6 +92,11 @@
     flex: 1 1 auto;
   }
 
+  .modelwidth
+  {
+    width: 600px;
+  }
+
   .defaultheader
   {
     background-color: #0033c4;
