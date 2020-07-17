@@ -3,7 +3,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import {AddUserComponent} from 'src/app/components/dialog/add-user/add-user.component'
+import {AddUserComponent} from 'src/app/components/dialog/add-user/add-user.component';
+import {UploadFileComponent} from 'src/app/components/dialog/upload-file/upload-file.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
 import { ActivatedRoute,Router } from '@angular/router';
@@ -84,6 +85,14 @@ export class DashboardComponent {
     dialogCong.autoFocus = true;
     dialogCong.width = "70%";
     this.dialog.open(AddUserComponent,dialogCong);
+  };
+
+  onUpload() {
+    const dialogCong = new MatDialogConfig();
+    dialogCong.disableClose = true;
+    dialogCong.autoFocus = true;
+    dialogCong.width = "70%";
+    this.dialog.open(UploadFileComponent,dialogCong);
   };
 
   /** Whether the number of selected elements matches the total number of rows. */

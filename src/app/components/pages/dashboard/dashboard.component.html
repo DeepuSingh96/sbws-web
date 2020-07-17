@@ -1,4 +1,6 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
 <mat-sidenav-container fullscreen>
   <mat-sidenav #sidenav opened mode="side">
     <div class="toptoolbar cursor">
@@ -17,15 +19,15 @@
     </mat-toolbar>
     <mat-toolbar class="toolbar1 cursor">
       <mat-icon>cloud_upload</mat-icon>
-      <span style="padding-left:15px;">Import Report</span>
+      <span style="padding-left:15px;" (click)="onUpload()">Import Report</span>
     </mat-toolbar>
     <mat-toolbar class="toolbar1 cursor">
       <mat-icon>cloud_download</mat-icon>
-      <span style="padding-left:15px;">Export Export</span>
+      <span style="padding-left:15px;" (click)="exportExcel()">Export Export</span>
     </mat-toolbar>
     <mat-toolbar class="toolbar1 cursor" (click)=LogOut()>
       <mat-icon>exit_to_app</mat-icon>
-        <span>Logout</span>
+        <span style="padding-left:15px;">Logout</span>
     </mat-toolbar>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -61,17 +63,17 @@
       <!-- <button mat-raised-button color="primary" (click)="removeSelectedRows()" class="button"> Delete Selected
         Request</button> -->
       <button mat-raised-button color="primary" (click)="exportExcel()" class="button"> Export Report </button>
-      <button mat-raised-button color="primary" onclick="document.getElementById('id01').style.display='block'"
+      <button mat-raised-button color="primary" onclick="document.getElementById('customexportmodel').style.display='block'"
         class="button">Custom Export Report</button>
-
     </div>
-
+    
+    <!--Custom export model-->
     <div class="w3-container">
-      <div id="id01" class="w3-modal">
+      <div id="customexportmodel" class="w3-modal">
         <div class="w3-modal-content modelwidth">
           <mat-toolbar color="primary">
             <span>Select Columns</span>
-            <span onclick="document.getElementById('id01').style.display='none'"
+            <span onclick="document.getElementById('customexportmodel').style.display='none'"
               class="w3-button w3-display-topright">&times;</span>
           </mat-toolbar>
           <div class="container">
