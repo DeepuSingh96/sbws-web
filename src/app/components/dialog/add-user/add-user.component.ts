@@ -1,62 +1,80 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
-import {MatGridListModule} from '@angular/material/grid-list';
-import { MatSelectModule } from '@angular/material/select';
-import { NgModel, FormGroup, FormControl } from '@angular/forms';
-import { FormBuilder, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-
+import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+//import { ActivatedRoute,Router } from '@angular/router';
+import{CreatesbwsrequestService} from '../../../service/createsbwsrequest/createsbwsrequest.service'
 
 @Component({
   selector: 'app-add-user',
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css']
 })
+
 export class AddUserComponent implements OnInit {
   @ViewChild('closebutton') closebutton;
+  addNewEmployee: FormGroup;
+  submitted = false;
+  constructor(private formBuilder: FormBuilder,private createSBWSRequest:CreatesbwsrequestService) { }
   
-  constructor() { }
 
   Accounts = ["Standard Life","Aviva"];
   WorkModes = ["Personal Laptop","TCS Laptop","TCS Desktop"];
   Supervisors = ["Mohan Ragavendra Rao","Anila","Kavitha","Shwetha"];
+  ParentUnits = ["BFSI"];
+  TypeOfInternet=["PG Wifi","Mobile HOTSPOT","Personal internet"];
+  YesOrNo=["Yes","No"]
   selectedOption : string = 'No';
 
-
-  addNewEmployee = new FormGroup({
-    slNo : new FormControl('', [Validators.required]),
-    empNumber : new FormControl('', [Validators.required]),
-    empName : new FormControl('', [Validators.required]),
-    empAccount : new FormControl('', [Validators.required]),
-    empTeamName : new FormControl('', [Validators.required]),
-    coid : new FormControl('', [Validators.required]),
-    empContact : new FormControl('', [Validators.required]),
-    empAlterNumber : new FormControl('', [Validators.required]),
-    empAddress : new FormControl('', [Validators.required]),
-    empPresentLocation : new FormControl('', [Validators.required]),
-    empWorkLocation : new FormControl('', [Validators.required]),
-    empParentUnit : new FormControl('', [Validators.required]),
-    empModeofWorking : new FormControl('', [Validators.required]),
-    empAssetId : new FormControl('', [Validators.required]),
-    empSBWS : new FormControl('', [Validators.required]),
-    empSupervisor : new FormControl('', [Validators.required]),
-    empPG : new FormControl('', [Validators.required]),
-    desktopTCS : new FormControl('', [Validators.required]),
-    wifiTCS : new FormControl(''),
-    upsTCS : new FormControl(''),
-    typeofInternet : new FormControl('', [Validators.required])
-    
-
-
-  });
-  
-  // convenience getter for easy access to form fields
-  get emp() { return this.addNewEmployee.controls; }
-
   ngOnInit(): void {
+    this.addNewEmployee = this.formBuilder.group({
+      employeeNo: ['', Validators.required],
+      employeeName: ['', Validators.required],
+      account_name : ['', Validators.required],
+      teamName  : ['', Validators.required],
+      coId  : ['', Validators.required],
+      presentLocation  : ['', Validators.required],
+      workLocation  : ['', Validators.required],
+      parentUnit  : ['', Validators.required],
+      modeOfWorking  : ['', Validators.required],
+      assetId  : ['', Validators.required],
+      sbwsEnabled  : ['', Validators.required],
+      leadSupervisorName  : ['', Validators.required],
+      stayingInPg  : ['', Validators.required],
+      tcsDesktop  : ['', Validators.required],
+      typeOfInternetConnection  : ['', Validators.required],
+  });
   }
   
-  onSubmit() {
-    console.log(this.addNewEmployee.value);
-  }
+ // convenience getter for easy access to form fields
+ get f() { return this.addNewEmployee.controls; }
+
+
+ 
+ onSubmit() {
+     this.submitted = true;
+     // stop here if form is invalid
+     if (this.addNewEmployee.invalid) {
+      alert("Please fill all required fields");
+         return;
+     }
+     else
+     {
+      let resp = this.createSBWSRequest.createrequest(this.addNewEmployee.value).subscribe(
+        data =>{
+          console.log(data);
+          alert("Request created sucessfully");
+        },
+        error=>
+        {
+          console.log(error);
+          alert("Request not created")
+        }
+      );
+     }
+ }
+
+ onReset() {
+     this.submitted = false;
+     this.addNewEmployee.reset();
+ }
 
 }
