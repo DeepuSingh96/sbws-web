@@ -25,7 +25,7 @@ export class DashboardComponent {
   };
 
   ELEMENT_DATA: Element[] = [];
-  displayedColumns = ['select', 'employeeNo', 'employeeName', 'accountId', 'teamName', 'coId','presentLocation',
+  displayedColumns = ['select','action', 'employeeNo', 'employeeName', 'accountId', 'teamName', 'coId','presentLocation',
 'workLocation','parentUnit','modeOfWorking','assetId','sbwsEnabled','leadSupervisorName','stayingInPg','tcsDesktop','typeOfInternetConnection'];
  
   dataSource = new MatTableDataSource<Element>(this.ELEMENT_DATA);
@@ -138,21 +138,21 @@ export class DashboardComponent {
    //List of Column want to show on Custome export popup
    customExportColumns = [
  // {name :"position", id: 0},
- {name :"employeeNo", id: 1,isSelected:false},
- {name :"employeeName", id: 2,isSelected:false},
- {name :"accountId", id: 3,isSelected:false},
- {name :"teamName", id: 4,isSelected:false},
- {name :"coId", id: 5,isSelected:false},
- {name :"presentLocation", id: 6,isSelected:false},
- {name :"workLocation", id: 7,isSelected:false},
- {name :"parentUnit", id: 8,isSelected:false},
- {name :"modeOfWorking", id: 9,isSelected:false},
- {name :"assetId", id: 10,isSelected:false},
- {name :"sbwsEnabled", id: 11,isSelected:false},
- {name :"leadSupervisorName", id: 12,isSelected:false},
- {name :"stayingInPg", id: 13,isSelected:false},
- {name :"tcsDesktop", id: 14,isSelected:false},
- {name :"typeOfInternetConnection", id: 15,isSelected:false},
+ {name :"employeeNo", id: 2,isSelected:false},
+ {name :"employeeName", id: 3,isSelected:false},
+ {name :"accountId", id: 4,isSelected:false},
+ {name :"teamName", id: 5,isSelected:false},
+ {name :"coId", id: 6,isSelected:false},
+ {name :"presentLocation", id: 7,isSelected:false},
+ {name :"workLocation", id: 8,isSelected:false},
+ {name :"parentUnit", id: 9,isSelected:false},
+ {name :"modeOfWorking", id: 10,isSelected:false},
+ {name :"assetId", id: 11,isSelected:false},
+ {name :"sbwsEnabled", id: 12,isSelected:false},
+ {name :"leadSupervisorName", id: 13,isSelected:false},
+ {name :"stayingInPg", id: 14,isSelected:false},
+ {name :"tcsDesktop", id: 15,isSelected:false},
+ {name :"typeOfInternetConnection", id: 16,isSelected:false},
  ];
 
 //helping to add element to generate custom excel report

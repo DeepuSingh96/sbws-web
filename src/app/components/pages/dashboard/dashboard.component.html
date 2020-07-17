@@ -1,31 +1,31 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <mat-sidenav-container fullscreen>
   <mat-sidenav #sidenav opened mode="side">
-    <div class="toptoolbar">
-      <p style="font-weight: bold; font-size: medium;"> Mini O</p>
+    <div class="toptoolbar cursor">
+      <mat-icon>account_circle</mat-icon>
       <p>{{username}}</p>
     </div>
     <mat-divider></mat-divider>
-    <mat-form-field appearance="outline" class="icon">
+    <!-- <mat-form-field appearance="outline" class="icon">
       <mat-label>search</mat-label>
       <input matInput placeholder="type to search">
       <mat-icon matPrefix>search</mat-icon>
-    </mat-form-field>
-    <mat-toolbar class="toolbar">
-      <mat-icon>explore</mat-icon>
-      <span style="padding-left:15px;">SBWS Dashboard</span>
+    </mat-form-field> -->
+    <mat-toolbar class="toolbar1 cursor">
+      <mat-icon>person_add_alt_1</mat-icon>
+      <span style="padding-left:15px;">Add User</span>
     </mat-toolbar>
-    <mat-toolbar class="toolbar1">
-      <mat-icon>archive</mat-icon>
-      <span style="padding-left:15px;">Export</span>
+    <mat-toolbar class="toolbar1 cursor">
+      <mat-icon>cloud_upload</mat-icon>
+      <span style="padding-left:15px;">Import Report</span>
     </mat-toolbar>
-    <mat-toolbar class="toolbar1">
-      <mat-icon>list</mat-icon>
-      <span style="padding-left:15px;">Reports</span>
+    <mat-toolbar class="toolbar1 cursor">
+      <mat-icon>cloud_download</mat-icon>
+      <span style="padding-left:15px;">Export Export</span>
     </mat-toolbar>
-    <mat-toolbar class="toolbar1">
-      <mat-icon>input</mat-icon>
-      <span style="padding-left:15px;">Logout</span>
+    <mat-toolbar class="toolbar1 cursor" (click)=LogOut()>
+      <mat-icon>exit_to_app</mat-icon>
+        <span>Logout</span>
     </mat-toolbar>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -33,9 +33,9 @@
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <button mat-icon-button (click)="sidenav.toggle()">
-          <mat-icon>menu</mat-icon>
+          <mat-icon>swap_horiz</mat-icon>
         </button>
-        <span>SBWS Tracker</span>
+        <span class="cursor">SBWS Tracker</span>
         <span class="example-spacer"></span>
         <button mat-icon-button [matMenuTriggerFor]="dropdownMenu">
           <mat-icon>menu</mat-icon>
@@ -57,9 +57,9 @@
 
     <div class="button-container">
       <button mat-raised-button color="primary" (click)="onCreate()" class="button"> Create Request </button>
-      <button mat-raised-button color="primary" class="button">Edit Request</button>
-      <button mat-raised-button color="primary" (click)="removeSelectedRows()" class="button"> Delete Selected
-        Request</button>
+      <!-- <button mat-raised-button color="primary" class="button">Edit Request</button> -->
+      <!-- <button mat-raised-button color="primary" (click)="removeSelectedRows()" class="button"> Delete Selected
+        Request</button> -->
       <button mat-raised-button color="primary" (click)="exportExcel()" class="button"> Export Report </button>
       <button mat-raised-button color="primary" onclick="document.getElementById('id01').style.display='block'"
         class="button">Custom Export Report</button>
@@ -89,12 +89,6 @@
               </div>
             </div>
           </div>
-          <!-- <div class="w3-container">
-        <div *ngFor="let column of customExportColumns">
-             <input (change)="onChange(column, $event.target.checked)" name="{{ column.name }}" type="checkbox" id="{{column.name}}">
-             <label for="{{column.name}}">{{column.name |uppercase}}</label>
-         </div>
-      </div> -->
           <footer class="modal-footer">
             <button mat-raised-button color="primary" mat-raised-button (click)="exportExcel()">Export Report</button>
           </footer>
@@ -111,10 +105,6 @@
     <div class="example-container mat-elevation-z8">
 
       <table mat-table [dataSource]="dataSource" matSort>
-        <!--<div class="example-container mat-elevation-z8">
-<table mat-table [dataSource]="dataSource" matSort>
-
- Checkbox Column -->
         <ng-container matColumnDef="select">
           <th class="defaultheader" mat-header-cell *matHeaderCellDef>
             <mat-checkbox class="defaultheader" (change)="$event ? masterToggle() : null"
@@ -128,13 +118,20 @@
             </mat-checkbox>
           </td>
         </ng-container>
-
+        <ng-container matColumnDef="action">
+          <th class="defaultheader" mat-header-cell *matHeaderCellDef>
+            Actions
+          </th>
+          <td mat-cell *matCellDef="let row">
+            <span class="material-icons cursor">
+              delete
+              </span>
+              <span class="material-icons cursor">
+                edit
+                </span>
+          </td>
+        </ng-container>
         <!-- Position Column -->
-        <!-- <ng-container matColumnDef="slNo">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> S No. </th>
-      <td mat-cell *matCellDef="let element"> {{element.slNo}} </td>
-    </ng-container> -->
-
         <!-- Emp ID Column -->
         <ng-container matColumnDef="employeeNo">
           <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Employee Id </th>
@@ -233,9 +230,6 @@
             <mat-icon>more_vert</mat-icon>
           </td>
         </ng-container>
-
-
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns; true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)">
       </table>
@@ -245,5 +239,4 @@
       </mat-paginator>
     </div>
   </mat-sidenav-content>
-
 </mat-sidenav-container>

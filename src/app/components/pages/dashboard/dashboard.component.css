@@ -3,7 +3,6 @@
     display: flex;
     flex-direction: column;
     margin: 40px;
-   
     overflow: auto;
   }
   
@@ -110,6 +109,10 @@
     flex: 1 1 auto;
   }
 
+  .cursor
+  {
+    cursor: pointer; 
+  }
   mat-sidenav
   {
     width:280px;
