@@ -25,6 +25,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { UploadFileComponent } from './components/dialog/upload-file/upload-file.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,8 @@ import { RouterModule } from '@angular/router';
     EditUserComponent,
     DeleteUserComponent,
     AdminDashboardComponent,
-    ErrorComponent
+    ErrorComponent,
+    UploadFileComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,9 @@ import { RouterModule } from '@angular/router';
     MatDividerModule,
     AppRoutingModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    MatToolbarModule,
+    MatSidenavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
