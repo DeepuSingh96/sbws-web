@@ -26,7 +26,7 @@ export class DashboardComponent {
   };
 
   ELEMENT_DATA: Element[] = [];
-  displayedColumns = ['select','action', 'employeeNo', 'employeeName', 'accountId', 'teamName', 'coId','presentLocation',
+  displayedColumns = ['action', 'employeeNo', 'employeeName', 'accountId', 'teamName', 'coId','presentLocation',
 'workLocation','parentUnit','modeOfWorking','assetId','sbwsEnabled','leadSupervisorName','stayingInPg','tcsDesktop','typeOfInternetConnection'];
  
   dataSource = new MatTableDataSource<Element>(this.ELEMENT_DATA);
@@ -46,8 +46,6 @@ export class DashboardComponent {
 
   //Default function to run on page load
   ngOnInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
     this.username=this.route.snapshot.params['username'];
     this.refreshDashboard();
   }
@@ -58,13 +56,9 @@ export class DashboardComponent {
   {
     this.dashboardService.retrieveDashboard(this.username).subscribe(
       response => {
-        //console.log(response);
         this.ELEMENT_DATA=response;
-        //console.log('data from element_data'+this.ELEMENT_DATA);
         this.dataSource = new MatTableDataSource<Element>(this.ELEMENT_DATA);
-        //console.log('new data source'+this.dataSource);
         this.data = Object.assign(this.ELEMENT_DATA);
-        //console.log('data from data'+this.data);
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
       }
@@ -180,7 +174,7 @@ export class DashboardComponent {
 };
 
   //Helping to create selection for custom report
-createsample()
+createcustomcolumns()
 {
 this.exportSelection=[];
 this.displayedColumns.forEach(el => {
@@ -197,7 +191,7 @@ exportExcel() {
 const workSheet = XLSX.utils.json_to_sheet(this.ELEMENT_DATA, {header:[]});
  if(this.AText.length!=0)
  {
-   this.createsample();
+   this.createcustomcolumns();
    workSheet['!cols'] = this.exportSelection;
  }
   const workBook: XLSX.WorkBook = XLSX.utils.book_new();
