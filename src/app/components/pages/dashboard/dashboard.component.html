@@ -107,7 +107,7 @@
     <div class="example-container mat-elevation-z8">
 
       <table mat-table [dataSource]="dataSource" matSort>
-        <ng-container matColumnDef="select">
+        <!-- <ng-container matColumnDef="select">
           <th class="defaultheader" mat-header-cell *matHeaderCellDef>
             <mat-checkbox class="defaultheader" (change)="$event ? masterToggle() : null"
               [checked]="selection.hasValue() && isAllSelected()"
@@ -119,16 +119,16 @@
               [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
             </mat-checkbox>
           </td>
-        </ng-container>
+        </ng-container> -->
         <ng-container matColumnDef="action">
           <th class="defaultheader" mat-header-cell *matHeaderCellDef>
             Actions
           </th>
           <td mat-cell *matCellDef="let row">
-            <span class="material-icons cursor">
+            <span class="material-icons cursor" style="color: #c40000;">
               delete
-              </span>
-              <span class="material-icons cursor">
+              </span>&nbsp;
+              <span class="material-icons cursor" style="color: #00c469;">
                 edit
                 </span>
           </td>
