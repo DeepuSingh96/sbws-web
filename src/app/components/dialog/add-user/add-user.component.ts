@@ -1,7 +1,8 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit,ViewChild,Inject } from '@angular/core';
 import { FormGroup,FormBuilder, Validators } from '@angular/forms';
 //import { ActivatedRoute,Router } from '@angular/router';
-import{CreatesbwsrequestService} from '../../../service/createsbwsrequest/createsbwsrequest.service'
+import{CreatesbwsrequestService} from '../../../service/createsbwsrequest/createsbwsrequest.service';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-add-user',
@@ -13,7 +14,7 @@ export class AddUserComponent implements OnInit {
   @ViewChild('closebutton') closebutton;
   addNewEmployee: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder,private createSBWSRequest:CreatesbwsrequestService) { }
+  constructor(private formBuilder: FormBuilder,private createSBWSRequest:CreatesbwsrequestService, @Inject(DOCUMENT) private _document: Document) { }
   
 
   Accounts = ["Standard Life","Aviva"];
@@ -47,7 +48,9 @@ export class AddUserComponent implements OnInit {
  // convenience getter for easy access to form fields
  get f() { return this.addNewEmployee.controls; }
 
-
+ refreshPage() {
+  this._document.defaultView.location.reload();
+}
  
  onSubmit() {
      this.submitted = true;
@@ -62,11 +65,13 @@ export class AddUserComponent implements OnInit {
         data =>{
           console.log(data);
           alert("Request created sucessfully");
+          this.refreshPage()
         },
         error=>
         {
           console.log(error);
-          alert("Request not created")
+          alert("Request not created");
+          this.refreshPage()
         }
       );
      }
