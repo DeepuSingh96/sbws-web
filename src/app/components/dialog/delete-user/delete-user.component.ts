@@ -16,6 +16,7 @@ export class DeleteUserComponent implements OnInit {
     private deletesbwsrequest:DeletesbwsrequestService,
     @Inject(DOCUMENT) private document : Document,
     @Inject(MAT_DIALOG_DATA) public data :  any,
+    
   ) { }
 
   username:'';
@@ -30,9 +31,11 @@ export class DeleteUserComponent implements OnInit {
       resp.subscribe(
         data=>{
           alert('FeedBack Deleted')
+          this.document.defaultView.location.reload();
         },
         error=>{
           alert('FeedBack Not Deleted')
+          this.document.defaultView.location.reload();
         }
       )
       this.document.location.reload();

@@ -72,10 +72,12 @@ export class EditUserComponent implements OnInit {
      data =>{
        console.log(data);
        alert("Request created sucessfully");
+       this.document.defaultView.location.reload();
      },
      error=>{
        console.log(error);
        alert("Request not created")
+       this.document.defaultView.location.reload();
      }
    );
   }
