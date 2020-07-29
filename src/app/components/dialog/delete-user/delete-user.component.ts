@@ -27,14 +27,15 @@ export class DeleteUserComponent implements OnInit {
   delete()
   {
     //if(confirm("Are you sure to delete")){
-      let resp = this.deletesbwsrequest.deleterequest("{{username}}",this.data.dataKey,this.delete);
+      alert(this.data.dataKey)
+      let resp = this.deletesbwsrequest.deleterequest("loggedin",this.data.dataKey);
       resp.subscribe(
         data=>{
-          alert('FeedBack Deleted')
+          alert('Request Deleted')
           this.document.defaultView.location.reload();
         },
         error=>{
-          alert('FeedBack Not Deleted')
+          alert('Request Not Deleted')
           this.document.defaultView.location.reload();
         }
       )

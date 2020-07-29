@@ -98,7 +98,7 @@ export class DashboardComponent {
    };
  };
  
- delete(id)
+ delete(element)
  {
    if(this.isSelected){
     let dialogCong = this.dialog.open(DeleteUserComponent,{
@@ -106,7 +106,7 @@ export class DashboardComponent {
       autoFocus : true,
       width : "70%",
       data:{
-        dataKey : id,
+        dataKey : element.employeeNo,
       }
     });
   }
