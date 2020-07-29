@@ -124,12 +124,20 @@
           <th class="defaultheader" mat-header-cell *matHeaderCellDef>
             Actions
           </th>
-          <td mat-cell *matCellDef="let row">
+          <!-- <td mat-cell *matCellDef="let row">
             <span class="material-icons cursor" style="color: #c40000;">
               delete
               </span>&nbsp;
               <span class="material-icons cursor" style="color: #00c469;">
                 edit
+              </span>
+          </td> -->
+          <td mat-cell *matCellDef="let element">
+            <span class="material-icons cursor"    style="color: #c40000;"   (click) = "delete(element.id)">
+              delete
+              </span>
+              <span class="material-icons cursor" style="color: #00c469;" (click) = "edit(element)">
+                edit 
                 </span>
           </td>
         </ng-container>

@@ -14,5 +14,10 @@ export class CreatesbwsrequestService {
     //console.log(body);
     return this.http.post("http://localhost:8181/dashboard/mohit/usersDetails",body,{'headers':headers});
   }
-
+  public updaterequest(username,employeeNo,upData) {
+    const headers = { 'content-type': 'application/json'}  
+    const body=JSON.stringify(upData);
+    console.log(body);
+    return this.http.put(`http://localhost:8181/dashboard/${username}/usersDetails/${employeeNo}`,body,{'headers':headers});
+  }
 }

@@ -1,0 +1,13 @@
+mat-form-field{
+  width: 100%;
+}
+h4{
+  color: #0033c4;
+}
+.close
+{
+  position: absolute;
+  padding-left: 950px;
+  cursor: pointer;
+  
+}

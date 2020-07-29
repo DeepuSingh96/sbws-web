@@ -4,12 +4,15 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {AddUserComponent} from 'src/app/components/dialog/add-user/add-user.component';
+import {EditUserComponent} from 'src/app/components/dialog/edit-user/edit-user.component';
 import {UploadFileComponent} from 'src/app/components/dialog/upload-file/upload-file.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
 import { ActivatedRoute,Router } from '@angular/router';
 import {AuthenticationService} from '../../../service/authentication/authentication.service';
 import { DashboardService } from '../../../service/dashboard/dashboard.service';
+import { DeleteUserComponent } from '../../dialog/delete-user/delete-user.component';
+import { element } from 'protractor';
 // import { TestBed } from '@angular/core/testing';
 
 
@@ -81,6 +84,62 @@ export class DashboardComponent {
     this.dialog.open(AddUserComponent,dialogCong);
   };
 
+  edit(element){
+    if(this.isSelected){
+      let dialogCong = this.dialog.open(EditUserComponent,{
+        disableClose : true,
+        autoFocus : true,
+        width : "70%",
+        data:{
+          dataKey : element,
+        }
+      });
+    
+   };
+ };
+ 
+ delete(id)
+ {
+   if(this.isSelected){
+    let dialogCong = this.dialog.open(DeleteUserComponent,{
+      disableClose : true,
+      autoFocus : true,
+      width : "70%",
+      data:{
+        dataKey : id,
+      }
+    });
+  }
+ };
+ 
+ /*delete(){
+   
+   this.selection.selected.forEach(item => {
+      let index: number = this.data.findIndex(d => d === item);
+      //console.log(this.data.findIndex(d => d === item));
+      if(confirm("Are you sure to delete")){
+        this.data.splice(index,1);
+        alert('FeedBack Deleted')
+      }
+      else{
+       alert('FeedBack Not Deleted')
+      }
+      this.dataSource = new MatTableDataSource<Element>(this.data);
+    });
+    this.selection = new SelectionModel<Element>(true, []);
+ };
+
+
+ delete(){
+    this.selection.selected.forEach(item => {
+      let index: number = this.data.findIndex(d => d === item);
+      console.log(this.data.findIndex(d => d === item));
+      this.data.splice(index,1)
+      this.dataSource = new MatTableDataSource<Element>(this.data);
+    });
+    this.selection = new SelectionModel<Element>(true, []);
+ };
+ */
   onUpload() {
     const dialogCong = new MatDialogConfig();
     dialogCong.disableClose = true;
@@ -94,6 +153,16 @@ export class DashboardComponent {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
+  };
+
+  isSelected(){
+    this.selection.selected.forEach(item => {
+      let index: number = this.data.findIndex(d => d === item);
+      console.log(this.data.findIndex(d => d === item));
+      this.data.splice(index,1)
+      this.dataSource = new MatTableDataSource<Element>(this.data);
+    });
+    this.selection = new SelectionModel<Element>(true, []);
   };
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
