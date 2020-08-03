@@ -4,8 +4,8 @@
 <mat-sidenav-container fullscreen>
   <mat-sidenav #sidenav opened mode="side">
     <div class="toptoolbar cursor">
-      <mat-icon>account_circle</mat-icon>
-      <p>{{username}}</p>
+      <mat-icon class="icon-display">account_circle</mat-icon><br>
+      <p class="username">{{username}}</p>
     </div>
     <mat-divider></mat-divider>
     <!-- <mat-form-field appearance="outline" class="icon">
@@ -17,22 +17,26 @@
       <mat-icon>person_add_alt_1</mat-icon>
       <span style="padding-left:15px;" (click)="addUser()">Add User</span>
     </mat-toolbar>
+    <mat-divider></mat-divider>
     <mat-toolbar class="toolbar1 cursor">
       <mat-icon>cloud_upload</mat-icon>
       <span style="padding-left:15px;" (click)="onUpload()">Import Report</span>
     </mat-toolbar>
+    <mat-divider></mat-divider>
     <mat-toolbar class="toolbar1 cursor">
       <mat-icon>cloud_download</mat-icon>
       <span style="padding-left:15px;" (click)="exportExcel()">Export Export</span>
     </mat-toolbar>
+    <mat-divider></mat-divider>
     <mat-toolbar class="toolbar1 cursor" (click)=LogOut()>
       <mat-icon>exit_to_app</mat-icon>
         <span style="padding-left:15px;">Logout</span>
     </mat-toolbar>
+    <mat-divider></mat-divider>
   </mat-sidenav>
   <mat-sidenav-content>
     <!--Left Right corner menu section-->
-    <mat-toolbar color="primary">
+    <mat-toolbar class="toptoolbar" color="primary">
       <mat-toolbar-row>
         <button mat-icon-button (click)="sidenav.toggle()">
           <mat-icon>swap_horiz</mat-icon>
