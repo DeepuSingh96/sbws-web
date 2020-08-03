@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
 import{AddAdminUserServiceService }  from '../../../service/AddAdminUserService/addadminuserservice.service';
 
   
@@ -29,7 +30,7 @@ export class AdminDashboardComponent implements OnInit {
   username: any;
   public addForm:FormGroup;
   
-  constructor(private addbyadmin:AddAdminUserServiceService,private router:Router) { }
+  constructor(private addbyadmin:AddAdminUserServiceService,private router:Router,@Inject(DOCUMENT) private _document: Document) { }
   ngOnInit() {
     
   
@@ -64,6 +65,7 @@ export class AdminDashboardComponent implements OnInit {
         console.log(data)
         this.addForm.reset();
         this.router.navigate(['dashboard',this.username]);
+        this._document.defaultView.location.reload();
       }
     )
     
