@@ -50,7 +50,7 @@ export class DashboardComponent {
 
   //Default function to run on page load
   ngOnInit() {
-    this.username=this.route.snapshot.params['username'];
+    this.username=sessionStorage.getItem('authenticaterUser');;
     this.refreshDashboard();
   }
 
@@ -74,7 +74,6 @@ export class DashboardComponent {
   {
     this.authenticate.logout();
     this.router.navigate(['login']);
-
   };
 
   onCreate() {

@@ -11,7 +11,7 @@ import { RouteGuardService } from './service/routeGuard/route-guard.service'
 const routes: Routes = [
   {path:'', component:RegisterUserComponent},
   {path:'login', component:RegisterUserComponent},
-  {path:'dashboard/:username', component: DashboardComponent,canActivate:[RouteGuardService]},
+  {path:'dashboard', component: DashboardComponent,canActivate:[RouteGuardService]},
   {path:'createsbwsrequest', component:AddUserComponent},
   {path:'**', component:ErrorComponent }
 ];

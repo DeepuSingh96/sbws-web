@@ -24,16 +24,12 @@ export class RegisterUserComponent implements OnInit {
 
   SignIn()
   {
-    console.log('hi signIn');
-    console.log(this.enterUsername);
-    console.log(this.enterPassword);
     let resp = this.loginService.SignIn(this.enterUsername,this.enterPassword);
     resp.subscribe(
       data=>{ if(data==="login success")
           {
-            console.log(data)
             sessionStorage.setItem('authenticaterUser',this.enterUsername);
-            this.router.navigate(['dashboard',this.enterUsername]);
+            this.router.navigate(['dashboard']);
             this.invalidUser=false;
 
           }
