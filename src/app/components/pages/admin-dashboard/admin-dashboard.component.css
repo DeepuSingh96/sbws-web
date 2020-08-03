@@ -1,0 +1,9 @@
+body{
+    position: fixed;    
+}
+mat-form-field{
+    width: 100%;
+}
+.actions{
+    margin-left: 100px;
+}

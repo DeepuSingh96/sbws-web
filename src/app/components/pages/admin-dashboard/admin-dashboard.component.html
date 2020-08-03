@@ -1,1 +1,68 @@
-<p>admin-dashboard works!</p>
+      <mat-toolbar color="primary">
+        <span>ADD USER</span></mat-toolbar>
+    <div class="container" mat-dialog-content>
+      <form [formGroup]="addForm" (ngSubmit)="onSubmit()" autocomplete="off"  fxLayout="column wrap">
+      <mat-grid-list cols="3" rowHeight="150px">
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="EmployeeName">
+            <input matInput placeholder="Employee name" formControlName = "EmployeeName" required>
+            <mat-hint>Not more then 60 characters long.</mat-hint>
+      <mat-error *ngIf="hasError('EmployeeName', 'required')">Name is required</mat-error>
+      <mat-error *ngIf="hasError('EmployeeName', 'maxlength')">You have more than 60 characters</mat-error>
+        </mat-form-field>
+        </mat-grid-tile>
+        
+       <mat-grid-tile>
+          <mat-form-field appearance="outline" class="EmployeeId">
+            <input matInput placeholder="Employee Id" formControlName ="EmployeeId">
+            <mat-hint></mat-hint>
+            <mat-error *ngIf="hasError('EmployeeId', 'required')">EmployeeId is required</mat-error>
+        </mat-form-field>
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="MailId">
+            <input matInput placeholder="mail address" formControlName = "MailId">
+            <mat-hint></mat-hint>
+            <mat-error *ngIf="hasError('MailId', 'required')">MailId is required</mat-error>
+            <mat-error *ngIf="hasError('MailId', 'maxlength')">You have more than 100 characters</mat-error>
+        </mat-form-field>
+        </mat-grid-tile> 
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="AccountName">
+            <mat-label>Account</mat-label>
+        <mat-select placeholder="Account"  formControlName="AccountName">
+          <mat-option *ngFor="let account of AccountName" [value]="account.name" >
+            {{account.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('AccountName', 'required')">Account is required</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <mat-form-field appearance="outline" class="Role">  
+            <mat-label>Role</mat-label>
+        <mat-select placeholder="Role"  formControlName="Role">
+          <mat-option *ngFor="let role of Role" [value]="role.name" >
+            {{role.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hasError('Role', 'required')">Role is required</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+      </form>
+        
+      <div class="align-center" style="align-self: center;"mat-dialog-actions>
+        <div class="button-container">
+        <button class="add-user-btn" mat-raised-button color="primary" type="submit" (click)="onSubmit()">Add User</button>
+        <!--<button type="button" mat-raised-button color="warn" (click)="onCancel()" >Reset</button>-->
+        <button mat-button mat-dialog-close mat-raised-button color="primary"  class="add-user-btn">Cancel</button>            
+      </div>
+    </div>        
+    </div>  
+    

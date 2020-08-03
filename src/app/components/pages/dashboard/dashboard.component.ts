@@ -12,6 +12,7 @@ import { ActivatedRoute,Router } from '@angular/router';
 import {AuthenticationService} from '../../../service/authentication/authentication.service';
 import { DashboardService } from '../../../service/dashboard/dashboard.service';
 import { DeleteUserComponent } from '../../dialog/delete-user/delete-user.component';
+import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
 import { element } from 'protractor';
 // import { TestBed } from '@angular/core/testing';
 
@@ -112,6 +113,14 @@ export class DashboardComponent {
   }
  };
  
+ addUser(){
+  const dialogCong = new MatDialogConfig();
+  dialogCong.disableClose = true;
+  dialogCong.autoFocus = true;
+  dialogCong.width = "70%";
+  this.dialog.open(AdminDashboardComponent,dialogCong);    
+}
+
  /*delete(){
    
    this.selection.selected.forEach(item => {
