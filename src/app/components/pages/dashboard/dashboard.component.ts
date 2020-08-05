@@ -50,7 +50,7 @@ export class DashboardComponent {
 
   //Default function to run on page load
   ngOnInit() {
-    this.username=sessionStorage.getItem('authenticaterUser');;
+    this.username=sessionStorage.getItem('authenticaterUser');
     this.refreshDashboard();
   }
 
