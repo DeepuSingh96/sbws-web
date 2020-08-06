@@ -23,21 +23,24 @@ export class RegisterUserComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  resultArray:any
   SignIn()
   {
     let resp = this.loginService.SignIn(this.enterUsername,this.enterPassword);
     resp.subscribe(
-      data=>{ if(data==="login success")
+      data=>{ 
+        if(data==="")
           {
-            sessionStorage.setItem('authenticaterUser',this.enterUsername);
-            this.router.navigate(['dashboard']);
-            this.invalidUser=false;
-
-          }
-          else{
             this.invalidUser=true;
             this.errorMessage='Invalid Credentials';
+          }
+          else{
+            this.resultArray = data;
+            var obj = JSON.parse(this.resultArray);
+            sessionStorage.setItem('userRole',obj.role);
+            sessionStorage.setItem('authenticaterUser',obj.employeeName);
+            this.router.navigate(['dashboard']);
+            this.invalidUser=false;
           }},
       error=>
         {

@@ -46,11 +46,13 @@ export class DashboardComponent {
               private router:Router,
               private dashboardService:DashboardService
               ) { }
-  username = ''
+  username = '';
+  userRole='';
 
   //Default function to run on page load
   ngOnInit() {
     this.username=sessionStorage.getItem('authenticaterUser');
+    this.userRole= sessionStorage.getItem('userRole');
     this.refreshDashboard();
   }
 
@@ -120,34 +122,6 @@ export class DashboardComponent {
   this.dialog.open(AdminDashboardComponent,dialogCong);    
 }
 
- /*delete(){
-   
-   this.selection.selected.forEach(item => {
-      let index: number = this.data.findIndex(d => d === item);
-      //console.log(this.data.findIndex(d => d === item));
-      if(confirm("Are you sure to delete")){
-        this.data.splice(index,1);
-        alert('FeedBack Deleted')
-      }
-      else{
-       alert('FeedBack Not Deleted')
-      }
-      this.dataSource = new MatTableDataSource<Element>(this.data);
-    });
-    this.selection = new SelectionModel<Element>(true, []);
- };
-
-
- delete(){
-    this.selection.selected.forEach(item => {
-      let index: number = this.data.findIndex(d => d === item);
-      console.log(this.data.findIndex(d => d === item));
-      this.data.splice(index,1)
-      this.dataSource = new MatTableDataSource<Element>(this.data);
-    });
-    this.selection = new SelectionModel<Element>(true, []);
- };
- */
   onUpload() {
     const dialogCong = new MatDialogConfig();
     dialogCong.disableClose = true;
