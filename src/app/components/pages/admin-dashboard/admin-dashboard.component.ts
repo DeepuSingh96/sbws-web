@@ -23,8 +23,8 @@ export class AdminDashboardComponent implements OnInit {
   
   ];
   Role=[
-    {name:'Developer'},
-    {name:'Technical Lead'}
+    {name:'ADMIN'},
+    {name:'USER'}
   ];
 
   username: any;
@@ -45,6 +45,7 @@ export class AdminDashboardComponent implements OnInit {
 
     });
     this.username=sessionStorage.getItem('authenticaterUser');
+    console.log(this.username);
   }
  
 
@@ -59,7 +60,7 @@ export class AdminDashboardComponent implements OnInit {
   onSubmit() {
     console.log(this.addForm.value.AccountName);
     console.log(this.addForm.value.Role);
-    this.addbyadmin.addUserByAdmin(this.addForm.value).subscribe(
+    this.addbyadmin.addUserByAdmin(this.addForm.value,this.username).subscribe(
       data=>{ 
         alert("User created successfully!");
         console.log(data)

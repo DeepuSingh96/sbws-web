@@ -8,6 +8,6 @@ export class ResetPasswordService {
 
   constructor(private http :HttpClient) { }
   public resetPassword(employeeNo:string,oldpassword:string,password:string) {
-    return this.http.put(`http://localhost:8181/resetPassword`,{employeeNo:employeeNo,oldpassword:oldpassword,password:password},{responseType:'text' as 'json'});
+    return this.http.put(`http://localhost:8181/resetPassword`,{employeeNo:employeeNo,oldPassword:oldpassword,password:password},{responseType:'text' as 'json'});
   }
 }

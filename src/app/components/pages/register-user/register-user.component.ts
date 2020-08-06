@@ -67,7 +67,7 @@ export class RegisterUserComponent implements OnInit {
             this.invalidUser=true;
             this.errorMessage='User Not Exist';
           }
-          else if(data==="Old password mismatch")
+          else if(data==="Old Password Mismatch")
           {
             this.invalidUser=true;
             this.errorMessage='Old password mismatch';

@@ -6,9 +6,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AddAdminUserServiceService {
   constructor(private http:HttpClient) { }
 
-  addUserByAdmin(data:any){
-    console.log(data.AccountName);
+  addUserByAdmin(data:any,username){
+    console.log(data);
    
-    return this.http.post("http://localhost:8181/dashboard/addUser",{accountName:data.AccountName,employeeId:data.EmployeeId,employeeName:data.EmployeeName,mailId:data.MailId,role:data.Role},{responseType:'text' as 'json'})
+    return this.http.post("http://localhost:8181/dashboard/addUser",{accountName:data.AccountName,employeeNo:data.EmployeeId,employeeName:data.EmployeeName,mailId:data.MailId,role:data.Role,createdBy:username,createdDate:new Date()},{responseType:'text' as 'json'})
   }
 }

@@ -114,12 +114,15 @@ export class DashboardComponent {
   }
  };
  
- addUser(){
-  const dialogCong = new MatDialogConfig();
-  dialogCong.disableClose = true;
-  dialogCong.autoFocus = true;
-  dialogCong.width = "70%";
-  this.dialog.open(AdminDashboardComponent,dialogCong);    
+ addUser(){   
+  let dialogCong = this.dialog.open(AdminDashboardComponent,{
+    disableClose : true,
+    autoFocus : true,
+    width : "70%",
+    data:{
+      dataKey :  this.username,
+    }
+  });
 }
 
   onUpload() {
