@@ -31,11 +31,9 @@ export class DeleteUserComponent implements OnInit {
       let resp = this.deletesbwsrequest.deleterequest("loggedin",this.data.dataKey);
       resp.subscribe(
         data=>{
-          alert('Request Deleted')
           this.document.defaultView.location.reload();
         },
         error=>{
-          alert('Request Not Deleted')
           this.document.defaultView.location.reload();
         }
       )

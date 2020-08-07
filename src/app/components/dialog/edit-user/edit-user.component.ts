@@ -71,12 +71,10 @@ export class EditUserComponent implements OnInit {
    let resp = this.createSBWSRequest.updaterequest("{{username}}",this.selectedEmployee,this.editEmployee.value).subscribe(
      data =>{
        console.log(data);
-       alert("Request created sucessfully");
        this.document.defaultView.location.reload();
      },
      error=>{
        console.log(error);
-       alert("Request not created")
        this.document.defaultView.location.reload();
      }
    );

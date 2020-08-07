@@ -64,13 +64,11 @@ export class AddUserComponent implements OnInit {
       let resp = this.createSBWSRequest.createrequest(this.addNewEmployee.value).subscribe(
         data =>{
           console.log(data);
-          alert("Request created sucessfully");
           this.refreshPage()
         },
         error=>
         {
           console.log(error);
-          alert("Request not created");
           this.refreshPage()
         }
       );

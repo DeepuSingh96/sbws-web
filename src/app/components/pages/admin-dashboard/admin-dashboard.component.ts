@@ -62,7 +62,6 @@ export class AdminDashboardComponent implements OnInit {
     console.log(this.addForm.value.Role);
     this.addbyadmin.addUserByAdmin(this.addForm.value,this.username).subscribe(
       data=>{ 
-        alert("User created successfully!");
         console.log(data)
         this.addForm.reset();
         this.router.navigate(['dashboard',this.username]);
