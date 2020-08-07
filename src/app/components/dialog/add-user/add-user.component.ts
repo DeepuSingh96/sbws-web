@@ -29,7 +29,7 @@ export class AddUserComponent implements OnInit {
     this.addNewEmployee = this.formBuilder.group({
       employeeNo: ['', Validators.required],
       employeeName: ['', Validators.required],
-      account_name : ['', Validators.required],
+      accountId : ['', Validators.required],
       teamName  : ['', Validators.required],
       coId  : ['', Validators.required],
       presentLocation  : ['', Validators.required],

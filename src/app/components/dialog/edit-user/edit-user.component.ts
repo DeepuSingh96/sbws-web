@@ -39,7 +39,7 @@ export class EditUserComponent implements OnInit {
       this.editEmployee = this.formBuilder.group({
         employeeNo: [this.selectedEmployee, Validators.required],
         employeeName: [this.data.dataKey.employeeName, Validators.required],
-        account_name : [this.Accounts[this.data.dataKey.accountId], Validators.required],
+        accountId : [this.Accounts[this.data.dataKey.accountId], Validators.required],
         teamName  : [this.data.dataKey.teamName, Validators.required],
         coId  : [this.data.dataKey.coId, Validators.required],
         presentLocation  : [this.data.dataKey.presentLocation, Validators.required],

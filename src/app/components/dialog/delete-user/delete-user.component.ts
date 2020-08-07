@@ -26,8 +26,6 @@ export class DeleteUserComponent implements OnInit {
   }
   delete()
   {
-    //if(confirm("Are you sure to delete")){
-      alert(this.data.dataKey)
       let resp = this.deletesbwsrequest.deleterequest("loggedin",this.data.dataKey);
       resp.subscribe(
         data=>{
@@ -38,7 +36,6 @@ export class DeleteUserComponent implements OnInit {
         }
       )
       this.document.location.reload();
-  //}
   }
 
 }

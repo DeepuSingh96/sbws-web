@@ -1,5 +1,5 @@
 import {SelectionModel} from '@angular/cdk/collections';
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild,Inject} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -14,6 +14,7 @@ import { DashboardService } from '../../../service/dashboard/dashboard.service';
 import { DeleteUserComponent } from '../../dialog/delete-user/delete-user.component';
 import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
 import { element } from 'protractor';
+import { DOCUMENT } from '@angular/common';
 // import { TestBed } from '@angular/core/testing';
 
 
@@ -44,7 +45,7 @@ export class DashboardComponent {
   constructor(public dialog : MatDialog,private route:ActivatedRoute,
               public authenticate:AuthenticationService,
               private router:Router,
-              private dashboardService:DashboardService
+              private dashboardService:DashboardService,@Inject(DOCUMENT) private document: Document
               ) { }
   username = '';
   userRole='';
@@ -251,6 +252,7 @@ const workSheet = XLSX.utils.json_to_sheet(this.ELEMENT_DATA, {header:[]});
   const workBook: XLSX.WorkBook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workBook, workSheet, 'SheetName');
   XLSX.writeFile(workBook, 'filename.xlsx');
+  this.document.defaultView.location.reload();
 };
 
 checkUncheckAll() {
@@ -280,7 +282,7 @@ export interface Element {
   slNo:string,
   employeeNo:number,
   employeeName:string,
-  accountId:number,
+  accountId:string,
   teamName:string,
   coId:string,
   presentLocation:string,
