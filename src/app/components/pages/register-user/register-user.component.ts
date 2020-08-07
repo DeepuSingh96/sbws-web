@@ -35,10 +35,12 @@ export class RegisterUserComponent implements OnInit {
             this.errorMessage='Invalid Credentials';
           }
           else{
+            console.log(data)
             this.resultArray = data;
             var obj = JSON.parse(this.resultArray);
             sessionStorage.setItem('userRole',obj.role);
             sessionStorage.setItem('authenticaterUser',obj.employeeName);
+            sessionStorage.setItem('userAccount',obj.accountName);
             this.router.navigate(['dashboard']);
             this.invalidUser=false;
           }},

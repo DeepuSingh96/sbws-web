@@ -49,11 +49,13 @@ export class DashboardComponent {
               ) { }
   username = '';
   userRole='';
+  userAccount='';
 
   //Default function to run on page load
   ngOnInit() {
     this.username=sessionStorage.getItem('authenticaterUser');
     this.userRole= sessionStorage.getItem('userRole');
+    this.userAccount=sessionStorage.getItem('userAccount')
     this.refreshDashboard();
   }
 

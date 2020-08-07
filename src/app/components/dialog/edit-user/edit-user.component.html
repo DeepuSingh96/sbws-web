@@ -1,6 +1,7 @@
 
 <mat-toolbar color="primary">
-  <span>{{this.selectedEmployee}}</span>
+  <!-- <span>{{this.selectedEmployee}}</span> -->
+  <span>Edit Request</span>
   <!-- <button mat-button mat-dialog-close mat-raised-button color="primary" class="button"> Close </button> -->
   <!-- <span  mat-button mat-dialog-close mat-raised-button class="close">&times;</span> -->
 </mat-toolbar>
@@ -11,7 +12,7 @@
                 <mat-form-field appearance="outline">
                     <mat-label>Employee Id</mat-label>
                     <!-- <input matInput type="text" formControlName="employeeNo" class="form-control" /> -->
-                    <input matInput type="text" formControlName="employeeNo" class="form-control" />
+                    <input matInput [readonly]="true" type="text" formControlName="employeeNo" class="form-control" />
                     <div *ngIf="submitted && f.employeeNo.errors" class="invalid-feedback">
                       <div *ngIf="f.employeeNo.errors.required">Employee Id is required</div>
                   </div>
@@ -29,9 +30,7 @@
           <mat-grid-tile>
             <mat-form-field appearance="outline">
                 <mat-label>Account Name</mat-label>
-                <mat-select formControlName="accountId">
-                  <mat-option *ngFor="let account of Accounts" value="{{account}}">{{ account }}</mat-option> 
-                </mat-select>
+                <input matInput [readonly]="true" type="text" formControlName="accountId" class="form-control" />
             </mat-form-field>
         </mat-grid-tile> 
         <mat-grid-tile>

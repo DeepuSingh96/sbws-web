@@ -28,9 +28,10 @@
           <mat-grid-tile>
             <mat-form-field appearance="outline">
                 <mat-label>Account Name</mat-label>
-                <mat-select formControlName="accountId">
+                <input matInput [readonly]="true" type="text" formControlName="accountId" class="form-control" />
+                <!-- <mat-select formControlName="accountId">
                   <mat-option *ngFor="let account of Accounts" value="{{account}}">{{ account }}</mat-option> 
-                </mat-select>
+                </mat-select> -->
             </mat-form-field>
         </mat-grid-tile> 
         <mat-grid-tile>
