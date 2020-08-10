@@ -1,1 +1,150 @@
-<p>edit-user works!</p>
+
+<mat-toolbar color="primary">
+  <!-- <span>{{this.selectedEmployee}}</span> -->
+  <span>Edit Request</span>
+  <!-- <button mat-button mat-dialog-close mat-raised-button color="primary" class="button"> Close </button> -->
+  <!-- <span  mat-button mat-dialog-close mat-raised-button class="close">&times;</span> -->
+</mat-toolbar>
+<div class="container" mat-dialog-content  >
+      <form [formGroup]="editEmployee" (ngSubmit)="onUpdate()">
+        <mat-grid-list cols="3" rowHeight="100px">
+              <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Employee Id</mat-label>
+                    <!-- <input matInput type="text" formControlName="employeeNo" class="form-control" /> -->
+                    <input matInput [readonly]="true" type="text" formControlName="employeeNo" class="form-control" />
+                    <div *ngIf="submitted && f.employeeNo.errors" class="invalid-feedback">
+                      <div *ngIf="f.employeeNo.errors.required">Employee Id is required</div>
+                  </div>
+                </mat-form-field>
+            </mat-grid-tile> 
+            <mat-grid-tile>
+              <mat-form-field appearance="outline">
+                  <mat-label>Employee Name</mat-label>
+                  <input matInput type="text" formControlName="employeeName" class="form-control" />
+                  <div *ngIf="submitted && f.employeeName.errors" class="invalid-feedback">
+                    <div *ngIf="f.employeeName.errors.required">Employee Name is required</div>
+                </div>
+              </mat-form-field>
+          </mat-grid-tile> 
+          <mat-grid-tile>
+            <mat-form-field appearance="outline">
+                <mat-label>Account Name</mat-label>
+                <input matInput [readonly]="true" type="text" formControlName="accountId" class="form-control" />
+            </mat-form-field>
+        </mat-grid-tile> 
+        <mat-grid-tile>
+          <mat-form-field appearance="outline">
+              <mat-label>Team Name</mat-label>
+              <input matInput type="text" formControlName="teamName" class="form-control"  />
+              <div *ngIf="submitted && f.teamName.errors" class="invalid-feedback">
+                <div *ngIf="f.teamName.errors.required">Team Name is required</div>
+            </div>
+          </mat-form-field>
+      </mat-grid-tile> 
+      <mat-grid-tile>
+        <mat-form-field appearance="outline">
+            <mat-label>COID</mat-label>
+            <input matInput type="text" formControlName="coId" class="form-control"  />
+            <div *ngIf="submitted && f.coId.errors" class="invalid-feedback">
+              <div *ngIf="f.coId.errors.required">COID is required</div>
+          </div>
+        </mat-form-field>
+    </mat-grid-tile> 
+    <mat-grid-tile>
+      <mat-form-field appearance="outline">
+          <mat-label>Present Location</mat-label>
+          <input matInput type="text" formControlName="presentLocation" class="form-control" />
+          <div *ngIf="submitted && f.presentLocation.errors" class="invalid-feedback">
+            <div *ngIf="f.presentLocation.errors.required">Present Location is required</div>
+        </div>
+      </mat-form-field>
+  </mat-grid-tile> 
+  <mat-grid-tile>
+    <mat-form-field appearance="outline">
+        <mat-label>Work Location</mat-label>
+        <input matInput type="text" formControlName="workLocation" class="form-control"  />
+        <div *ngIf="submitted && f.workLocation.errors" class="invalid-feedback">
+          <div *ngIf="f.workLocation.errors.required">Work Location is required</div>
+      </div>
+    </mat-form-field>
+</mat-grid-tile> 
+<mat-grid-tile>
+  <mat-form-field appearance="outline">
+      <mat-label>Parent Unit</mat-label>
+      <mat-select formControlName="parentUnit">
+        <mat-option *ngFor="let parentunit of ParentUnits" value="{{parentunit}}">{{ parentunit }}</mat-option> 
+      </mat-select>
+  </mat-form-field>
+</mat-grid-tile> 
+<mat-grid-tile>
+  <mat-form-field appearance="outline">
+      <mat-label>Mode of Working</mat-label>
+      <mat-select formControlName="modeOfWorking">
+        <mat-option *ngFor="let workmode of WorkModes" value="{{workmode}}">{{ workmode }}</mat-option> 
+      </mat-select>
+  </mat-form-field>
+</mat-grid-tile> 
+<mat-grid-tile>
+  <mat-form-field appearance="outline">
+      <mat-label>Asset ID</mat-label>
+      <input matInput type="text" formControlName="assetId" class="form-control"  />
+      <div *ngIf="submitted && f.assetId.errors" class="invalid-feedback">
+        <div *ngIf="f.assetId.errors.required">Asset ID is required</div>
+    </div>
+  </mat-form-field>
+</mat-grid-tile> 
+<mat-grid-tile>
+  <mat-form-field appearance="outline">
+      <mat-label>SBWS Enbled</mat-label>
+      <mat-select formControlName="sbwsEnabled">
+        <mat-option *ngFor="let selection of YesOrNo" value="{{selection}}">{{ selection }}</mat-option> 
+      </mat-select>
+  </mat-form-field>
+</mat-grid-tile> 
+<mat-grid-tile>
+  <mat-form-field appearance="outline">
+      <mat-label>Lead/Supervisor Name</mat-label>
+      <mat-select formControlName="leadSupervisorName">
+        <mat-option *ngFor="let supervisor of Supervisors" value="{{supervisor}}">{{ supervisor }}</mat-option> 
+      </mat-select>
+  </mat-form-field>
+</mat-grid-tile> 
+<mat-grid-tile>
+  <mat-form-field appearance="outline">
+      <mat-label>Staying in PG</mat-label>
+      <mat-select formControlName="stayingInPg">
+        <mat-option *ngFor="let selection of YesOrNo" value="{{selection}}">{{ selection }}</mat-option> 
+      </mat-select>
+  </mat-form-field>
+</mat-grid-tile> 
+<mat-grid-tile>
+  <mat-form-field appearance="outline">
+    <mat-label>Having TCS Desktop</mat-label>
+    <mat-select formControlName="tcsDesktop">
+      <mat-option *ngFor="let selection of YesOrNo" value="{{selection}}">{{ selection }}</mat-option> 
+    </mat-select>
+  </mat-form-field>
+</mat-grid-tile> 
+<mat-grid-tile>
+  <mat-form-field appearance="outline">
+    <mat-label>Type of internet Connection</mat-label>
+    <mat-select formControlName="typeOfInternetConnection">
+      <mat-option *ngFor="let internet of TypeOfInternet" value="{{internet}}">{{ internet }}</mat-option> 
+    </mat-select>
+  </mat-form-field>
+</mat-grid-tile> 
+          <!-- <div class="text-center">
+              <button class="btn btn-primary mr-1">Register</button>
+              <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>
+          </div> -->
+        </mat-grid-list>
+        <div class="float-right" mat-dialog-actions>
+          <div class="button-container">
+              <button  mat-raised-button color="primary">Update</button>
+              <button mat-button mat-dialog-close mat-raised-button color="primary" class="button">Close</button>
+            </div>
+        </div>
+      </form>
+  </div>
+

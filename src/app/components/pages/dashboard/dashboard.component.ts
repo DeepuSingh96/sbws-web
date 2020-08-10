@@ -1,15 +1,20 @@
 import {SelectionModel} from '@angular/cdk/collections';
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild,Inject} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import {AddUserComponent} from 'src/app/components/dialog/add-user/add-user.component';
+import {EditUserComponent} from 'src/app/components/dialog/edit-user/edit-user.component';
 import {UploadFileComponent} from 'src/app/components/dialog/upload-file/upload-file.component';
 import {MatDialog, MatDialogConfig} from '@angular/material/dialog';
 import * as XLSX from 'xlsx';
 import { ActivatedRoute,Router } from '@angular/router';
 import {AuthenticationService} from '../../../service/authentication/authentication.service';
 import { DashboardService } from '../../../service/dashboard/dashboard.service';
+import { DeleteUserComponent } from '../../dialog/delete-user/delete-user.component';
+import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
+import { element } from 'protractor';
+import { DOCUMENT } from '@angular/common';
 // import { TestBed } from '@angular/core/testing';
 
 
@@ -40,13 +45,17 @@ export class DashboardComponent {
   constructor(public dialog : MatDialog,private route:ActivatedRoute,
               public authenticate:AuthenticationService,
               private router:Router,
-              private dashboardService:DashboardService
+              private dashboardService:DashboardService,@Inject(DOCUMENT) private document: Document
               ) { }
-  username = ''
+  username = '';
+  userRole='';
+  userAccount='';
 
   //Default function to run on page load
   ngOnInit() {
-    this.username=this.route.snapshot.params['username'];
+    this.username=sessionStorage.getItem('authenticaterUser');
+    this.userRole= sessionStorage.getItem('userRole');
+    this.userAccount=sessionStorage.getItem('userAccount')
     this.refreshDashboard();
   }
 
@@ -70,7 +79,6 @@ export class DashboardComponent {
   {
     this.authenticate.logout();
     this.router.navigate(['login']);
-
   };
 
   onCreate() {
@@ -80,6 +88,45 @@ export class DashboardComponent {
     dialogCong.width = "70%";
     this.dialog.open(AddUserComponent,dialogCong);
   };
+
+  edit(element){
+    if(this.isSelected){
+      let dialogCong = this.dialog.open(EditUserComponent,{
+        disableClose : true,
+        autoFocus : true,
+        width : "70%",
+        data:{
+          dataKey : element,
+        }
+      });
+    
+   };
+ };
+ 
+ delete(element)
+ {
+   if(this.isSelected){
+    let dialogCong = this.dialog.open(DeleteUserComponent,{
+      disableClose : true,
+      autoFocus : true,
+      width : "70%",
+      data:{
+        dataKey : element.employeeNo,
+      }
+    });
+  }
+ };
+ 
+ addUser(){   
+  let dialogCong = this.dialog.open(AdminDashboardComponent,{
+    disableClose : true,
+    autoFocus : true,
+    width : "70%",
+    data:{
+      dataKey :  this.username,
+    }
+  });
+}
 
   onUpload() {
     const dialogCong = new MatDialogConfig();
@@ -94,6 +141,16 @@ export class DashboardComponent {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
     return numSelected === numRows;
+  };
+
+  isSelected(){
+    this.selection.selected.forEach(item => {
+      let index: number = this.data.findIndex(d => d === item);
+      console.log(this.data.findIndex(d => d === item));
+      this.data.splice(index,1)
+      this.dataSource = new MatTableDataSource<Element>(this.data);
+    });
+    this.selection = new SelectionModel<Element>(true, []);
   };
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
@@ -197,6 +254,7 @@ const workSheet = XLSX.utils.json_to_sheet(this.ELEMENT_DATA, {header:[]});
   const workBook: XLSX.WorkBook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workBook, workSheet, 'SheetName');
   XLSX.writeFile(workBook, 'filename.xlsx');
+  this.document.defaultView.location.reload();
 };
 
 checkUncheckAll() {
@@ -226,7 +284,7 @@ export interface Element {
   slNo:string,
   employeeNo:number,
   employeeName:string,
-  accountId:number,
+  accountId:string,
   teamName:string,
   coId:string,
   presentLocation:string,

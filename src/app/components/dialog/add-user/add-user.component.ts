@@ -17,7 +17,7 @@ export class AddUserComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,private createSBWSRequest:CreatesbwsrequestService, @Inject(DOCUMENT) private _document: Document) { }
   
 
-  Accounts = ["Standard Life","Aviva"];
+ 
   WorkModes = ["Personal Laptop","TCS Laptop","TCS Desktop"];
   Supervisors = ["Mohan Ragavendra Rao","Anila","Kavitha","Shwetha"];
   ParentUnits = ["BFSI"];
@@ -29,7 +29,7 @@ export class AddUserComponent implements OnInit {
     this.addNewEmployee = this.formBuilder.group({
       employeeNo: ['', Validators.required],
       employeeName: ['', Validators.required],
-      account_name : ['', Validators.required],
+      accountId : [sessionStorage.getItem('userAccount'), Validators.required],
       teamName  : ['', Validators.required],
       coId  : ['', Validators.required],
       presentLocation  : ['', Validators.required],
@@ -63,14 +63,20 @@ export class AddUserComponent implements OnInit {
      {
       let resp = this.createSBWSRequest.createrequest(this.addNewEmployee.value).subscribe(
         data =>{
-          console.log(data);
-          alert("Request created sucessfully");
-          this.refreshPage()
+          if(data==="User request created")
+          {
+            alert("User request created");
+            this.refreshPage()
+          }
+          else
+          {
+            alert("User request alredy present")
+          }
         },
         error=>
         {
+          alert("User request created")
           console.log(error);
-          alert("Request not created");
           this.refreshPage()
         }
       );
