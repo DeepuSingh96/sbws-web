@@ -21,4 +21,19 @@ export class DashboardService {
     headers = headers.set('Authorization', 'Basic xzeydyt==');
     return this.http.get<Element[]>(`http://localhost:8181/dashboard/${username}/allEmployeeDetails`,{headers:headers})
   }
+
+  retrievedeleteDashboard(username)
+  {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Basic xzeydyt==');
+    return this.http.get<Element[]>(`http://localhost:8181/dashboard/${username}/allEmployeeDetails/deletedStatus`,{headers:headers})
+  }
+
+  retrievependingDashboard(username)
+  {
+    let headers = new HttpHeaders();
+    headers = headers.set('Authorization', 'Basic xzeydyt==');
+    return this.http.get<Element[]>(`http://localhost:8181/dashboard/${username}/allEmployeeDetails/pendingStatus`,{headers:headers})
+  }
+
 }
