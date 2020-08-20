@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,10 +12,8 @@ import { DeleteUserComponent } from './components/dialog/delete-user/delete-user
 import { AdminDashboardComponent } from './components/pages/admin-dashboard/admin-dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ErrorComponent } from './components/error/error.component';
-
 import { MaterialModule } from './material-module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -28,6 +26,7 @@ import { RouterModule } from '@angular/router';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { UploadFileComponent } from './components/dialog/upload-file/upload-file.component';
+import { HttpInterceptorBasicAuthService } from './service/http/http-interceptor-basic-auth.service';
 
 @NgModule({
   declarations: [
@@ -61,7 +60,11 @@ import { UploadFileComponent } from './components/dialog/upload-file/upload-file
     MatToolbarModule,
     MatSidenavModule
   ],
-  providers: [],
+  providers: [
+
+     {provide:HTTP_INTERCEPTORS,useClass : HttpInterceptorBasicAuthService,multi:true}
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

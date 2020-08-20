@@ -33,7 +33,7 @@ export class DashboardComponent {
   ELEMENT_DATA: Element[] = [];
   displayedColumns = ['action', 'employeeNo', 'employeeName', 'accountId', 'teamName', 'coId','presentLocation',
 'workLocation','parentUnit','modeOfWorking','assetId','sbwsEnabled','leadSupervisorName','stayingInPg','tcsDesktop','typeOfInternetConnection'];
- 
+
   dataSource = new MatTableDataSource<Element>(this.ELEMENT_DATA);
   selection = new SelectionModel<Element>(true, []);
   data = Object.assign(this.ELEMENT_DATA);
@@ -50,7 +50,10 @@ export class DashboardComponent {
   username = '';
   userRole='';
   userAccount='';
-
+  deleteCount:number;
+  deleteStatus:boolean;
+  pendingCount:number;
+  pendingStatus:boolean;
   //Default function to run on page load
   ngOnInit() {
     this.username=sessionStorage.getItem('authenticaterUser');
@@ -63,6 +66,8 @@ export class DashboardComponent {
   //Load data from database on page load
   refreshDashboard()
   {
+    console.log("yhi h username"+this.username);
+
     this.dashboardService.retrieveDashboard(this.username).subscribe(
       response => {
         this.ELEMENT_DATA=response;
@@ -99,10 +104,10 @@ export class DashboardComponent {
           dataKey : element,
         }
       });
-    
+
    };
  };
- 
+
  delete(element)
  {
    if(this.isSelected){
@@ -116,8 +121,8 @@ export class DashboardComponent {
     });
   }
  };
- 
- addUser(){   
+
+ addUser(){
   let dialogCong = this.dialog.open(AdminDashboardComponent,{
     disableClose : true,
     autoFocus : true,
@@ -194,7 +199,7 @@ export class DashboardComponent {
    emailFormArray: Array<any> = [];
    exportSelection=[];
    masterSelected:boolean;
- 
+
    //List of Column want to show on Custome export popup
    customExportColumns = [
  // {name :"position", id: 0},
@@ -272,9 +277,49 @@ checkUncheckAll() {
 
 isAllSelectedCustomerepoert() {
   this.masterSelected = this.customExportColumns.every(function(item:any) {
-      return item.isSelected == true;  
+      return item.isSelected == true;
     })
 };
+
+deletedRecord(){
+  console.log("click on delete recorded button");
+
+    this.dashboardService.retrievedeleteDashboard(this.username).subscribe(
+      response => {
+
+        this.deleteCount=response.length;
+        this.deleteStatus=true;
+        this.ELEMENT_DATA=response;
+        this.dataSource = new MatTableDataSource<Element>(this.ELEMENT_DATA);
+        this.data = Object.assign(this.ELEMENT_DATA);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      },
+      error=>{
+        this.deleteStatus=false;
+      }
+    )
+}
+
+pendingRecord(){
+  console.log("click on pending recorded button");
+  this.dashboardService.retrievependingDashboard(this.username).subscribe(
+    response => {
+
+      this.pendingCount=response.length;
+      this.pendingStatus=true;
+      this.ELEMENT_DATA=response;
+      this.dataSource = new MatTableDataSource<Element>(this.ELEMENT_DATA);
+      this.data = Object.assign(this.ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    },
+    error=>{
+      this.deleteStatus=false;
+    }
+  )
+}
+
 };
 /*End of Below Section for only expoert report in Excel */
 

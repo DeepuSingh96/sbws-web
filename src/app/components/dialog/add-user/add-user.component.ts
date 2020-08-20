@@ -75,7 +75,7 @@ export class AddUserComponent implements OnInit {
         },
         error=>
         {
-          alert("User request created")
+          alert("User request not created")
           console.log(error);
           this.refreshPage()
         }

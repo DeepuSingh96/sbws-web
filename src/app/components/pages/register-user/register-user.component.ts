@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+
+import {AuthenticationService} from '../../../service/authentication/authentication.service';
 import { ResetPasswordService } from '../../../service/resetPassword/reset-password.service';
 import { LoginService } from '../../../service/login/login.service';
 import { Router } from '@angular/router';
@@ -19,15 +21,25 @@ export class RegisterUserComponent implements OnInit {
   successMessage='';
   invalidUser=false;
 
-  constructor(private loginService: LoginService,private resetPasswordService: ResetPasswordService,private router:Router) { }
-
+  constructor(private loginService: LoginService,private router:Router,public authenticate:AuthenticationService,private resetPasswordService: ResetPasswordService) { }
+  public href: string = "";
   ngOnInit(): void {
+    this.href = this.router.url;
+    console.log("jrhij");
+
+    console.log(this.router.url);
+
+    console.log("djhjdhj");
+    if(this.href=="/" || this.href=="/login")
+    {
+      this.authenticate.logout();
+    }
   }
   resultArray:any
   SignIn()
   {
-    let resp = this.loginService.SignIn(this.enterUsername,this.enterPassword);
-    resp.subscribe(
+    let resp = this.loginService.executeJWTAuthenticationService(this.enterUsername,this.enterPassword)
+              .subscribe(
       data=>{ 
         if(data==="")
           {
@@ -36,11 +48,11 @@ export class RegisterUserComponent implements OnInit {
           }
           else{
             console.log(data)
-            this.resultArray = data;
-            var obj = JSON.parse(this.resultArray);
-            sessionStorage.setItem('userRole',obj.role);
-            sessionStorage.setItem('authenticaterUser',obj.employeeName);
-            sessionStorage.setItem('userAccount',obj.accountName);
+           // this.resultArray = data;
+           // var obj = JSON.parse(this.resultArray);
+            sessionStorage.setItem('userRole',data.roles);
+            sessionStorage.setItem('authenticaterUser',this.enterUsername);
+            sessionStorage.setItem('userAccount',data.accountName);
             this.router.navigate(['dashboard']);
             this.invalidUser=false;
           }},
