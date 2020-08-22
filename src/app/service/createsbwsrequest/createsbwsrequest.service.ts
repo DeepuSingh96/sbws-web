@@ -12,7 +12,7 @@ export class CreatesbwsrequestService {
     const headers = { 'content-type': 'application/json'}  
     const body=JSON.stringify(request);
     const username=sessionStorage.getItem('authenticaterUser')
-    return this.http.post<any>(`http://localhost:8181/dashboard/${username}/usersDetails`,body,{'headers':headers,responseType: 'text'as 'json'});
+    return this.http.post<any>(`http://localhost:8181/dashboard/${username}/adminRequest`,body,{'headers':headers,responseType: 'text'as 'json'});
   
   }
   public updaterequest(username,employeeNo,upData) {

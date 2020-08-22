@@ -54,6 +54,7 @@ export class DashboardComponent {
   deleteStatus:boolean;
   pendingCount:number;
   pendingStatus:boolean;
+  inAllRecord:boolean=false;
   //Default function to run on page load
   ngOnInit() {
     this.username=sessionStorage.getItem('authenticaterUser');
@@ -67,6 +68,10 @@ export class DashboardComponent {
   refreshDashboard()
   {
     console.log("yhi h username"+this.username);
+    if(!this.inAllRecord)
+   { this.inAllRecord=true;
+    
+  }
 
     this.dashboardService.retrieveDashboard(this.username).subscribe(
       response => {
@@ -109,7 +114,11 @@ export class DashboardComponent {
  };
 
  delete(element)
- {
+ {  if(element.createdBy===this.username)
+  {this.deleteStatus=true;}
+  else{
+    this.deleteStatus=false;
+  }
    if(this.isSelected){
     let dialogCong = this.dialog.open(DeleteUserComponent,{
       disableClose : true,
@@ -117,6 +126,7 @@ export class DashboardComponent {
       width : "70%",
       data:{
         dataKey : element.employeeNo,
+        deleteStatus:this.deleteStatus
       }
     });
   }

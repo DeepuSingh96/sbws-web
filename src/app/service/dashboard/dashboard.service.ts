@@ -35,5 +35,4 @@ export class DashboardService {
     headers = headers.set('Authorization', 'Basic xzeydyt==');
     return this.http.get<Element[]>(`http://localhost:8181/dashboard/${username}/allEmployeeDetails/pendingStatus`,{headers:headers})
   }
-
 }
