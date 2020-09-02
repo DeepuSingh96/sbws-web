@@ -50,15 +50,19 @@ export class DashboardComponent {
   username = '';
   userRole='';
   userAccount='';
+  employeeName='';
   deleteCount:number;
   deleteStatus:boolean;
   pendingCount:number;
   pendingStatus:boolean;
+  inAllRecord:boolean=false;
   //Default function to run on page load
   ngOnInit() {
     this.username=sessionStorage.getItem('authenticaterUser');
     this.userRole= sessionStorage.getItem('userRole');
-    this.userAccount=sessionStorage.getItem('userAccount')
+    this.userAccount=sessionStorage.getItem('userAccount');
+    this.employeeName = sessionStorage.getItem('employeeName');
+    console.log(sessionStorage.getItem('employeeName'));
     this.refreshDashboard();
   }
 
@@ -67,6 +71,10 @@ export class DashboardComponent {
   refreshDashboard()
   {
     console.log("yhi h username"+this.username);
+    if(!this.inAllRecord)
+   { this.inAllRecord=true;
+    
+  }
 
     this.dashboardService.retrieveDashboard(this.username).subscribe(
       response => {
@@ -90,7 +98,8 @@ export class DashboardComponent {
     const dialogCong = new MatDialogConfig();
     dialogCong.disableClose = true;
     dialogCong.autoFocus = true;
-    dialogCong.width = "70%";
+    dialogCong.width = "65%";
+    dialogCong.height ="30%";
     this.dialog.open(AddUserComponent,dialogCong);
   };
 
@@ -109,7 +118,11 @@ export class DashboardComponent {
  };
 
  delete(element)
- {
+ {  if(element.createdBy===this.username)
+  {this.deleteStatus=true;}
+  else{
+    this.deleteStatus=false;
+  }
    if(this.isSelected){
     let dialogCong = this.dialog.open(DeleteUserComponent,{
       disableClose : true,
@@ -117,6 +130,7 @@ export class DashboardComponent {
       width : "70%",
       data:{
         dataKey : element.employeeNo,
+        deleteStatus:this.deleteStatus
       }
     });
   }

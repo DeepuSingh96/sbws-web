@@ -98,7 +98,7 @@
 
   .defaultheader
   {
-    background-color: #0033c4;
+    background-color: #005cb9;
     color: white;
     font-family: Roboto, "Helvetica Neue", sans-serif;
     font-size: 14px;
@@ -123,7 +123,7 @@
     margin-top: 30px;
   }
   .toolbar{
-      background-color: #0033c4;
+      background-color: #005cb9;
       color: white;
       height: 40px;
       width: 100%;
@@ -132,10 +132,10 @@
 
 .toptoolbar{
     text-align: center;
-    padding-top: 15px;
+    padding-top: 12px;
     height: 75px;
-    font-size: 20px;
-    background-color: #0033c4;
+    font-size: 15px;
+    background-color: #005cb9;
     color: aliceblue;
 }
    
@@ -146,4 +146,8 @@
   padding-top: 12px;
 }
  
-  
+mat-toolbar {
+  background: whitesmoke;
+  color: #005cb9;
+  font: 500 16px/32px Roboto, "Helvetica Neue", sans-serif;
+}

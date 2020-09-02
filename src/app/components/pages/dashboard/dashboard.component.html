@@ -5,10 +5,10 @@
   <mat-sidenav #sidenav opened mode="side">
     <div class="toptoolbar cursor">
       <mat-icon class="icon-display">account_circle</mat-icon><br>
-      <p class="username">{{username}}</p>
+      <p class="username">{{employeeName}}</p>
     </div>
     <mat-divider></mat-divider>
-    <mat-toolbar class="toolbar1 cursor" *ngIf='userRole === "ADMIN"'>
+    <mat-toolbar class="toolbar1 cursor" *ngIf='userRole === "ROLE_ADMIN"'>
       <mat-icon>person_add_alt_1</mat-icon>
       <span style="padding-left:15px;" (click)="addUser()">Add User</span>
     </mat-toolbar>
@@ -29,15 +29,15 @@
     </mat-toolbar>
     <mat-divider></mat-divider>
     <mat-toolbar class="toolbar1 cursor">
-      <mat-icon>pending_actions</mat-icon>
-      <span style="padding-left:15px;" (click)="pendingRecord()"> <span *ngIf="pendingStatus; else templateName1" matBadge={{pendingCount}} matBadgeOverlap=false>Pending Records</span><ng-template #templateName1>
+      <mat-icon matBadge={{pendingCount}} matBadgeOverlap=false >pending_actions</mat-icon>
+      <span style="padding-left:15px;" (click)="pendingRecord()"> <span *ngIf="pendingStatus; else templateName1" >Pending Records</span><ng-template #templateName1>
         Pending Records
     </ng-template></span>
     </mat-toolbar>
     <mat-divider></mat-divider>
     <mat-toolbar class="toolbar1 cursor">
-      <mat-icon>delete</mat-icon>
-      <span style="padding-left:15px;" (click)="deletedRecord()"> <span *ngIf="deleteStatus; else templateName" matBadge={{deleteCount}} matBadgeOverlap=false>Deleted Records</span><ng-template #templateName>
+      <mat-icon matBadge={{deleteCount}} matBadgeOverlap=false  >delete</mat-icon>
+      <span style="padding-left:15px;" (click)="deletedRecord()"> <span *ngIf="deleteStatus; else templateName" >Deleted Records</span><ng-template #templateName>
         Deleted Records
     </ng-template></span>
     </mat-toolbar>
@@ -66,7 +66,7 @@
     <mat-menu #dropdownMenu>
       <a mat-menu-item>
         <mat-icon>account_circle</mat-icon>
-        <span>{{username}}</span>
+        <span>{{employeeName}}</span>
       </a>
       <a mat-menu-item>
         <mat-icon>supervised_user_circle</mat-icon>

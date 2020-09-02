@@ -53,6 +53,7 @@ export class RegisterUserComponent implements OnInit {
             sessionStorage.setItem('userRole',data.roles);
             sessionStorage.setItem('authenticaterUser',this.enterUsername);
             sessionStorage.setItem('userAccount',data.accountName);
+            sessionStorage.setItem('employeeName',data.employeeName);
             this.router.navigate(['dashboard']);
             this.invalidUser=false;
           }},
@@ -106,4 +107,5 @@ export class RegisterUserComponent implements OnInit {
 }
 //url="/src/assets/images/ult.png";
 url='../../../../assets/images/ult.png';
+
 }
