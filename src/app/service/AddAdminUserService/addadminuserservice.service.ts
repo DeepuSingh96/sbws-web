@@ -12,6 +12,6 @@ export class AddAdminUserServiceService {
   addUserByAdmin(data:any,username){
     console.log(data);
    
-    return this.http.post(this.baseUrl+"/dashboard/addUser",{accountName:data.AccountName,employeeNo:data.EmployeeId,employeeName:data.EmployeeName,emailId:data.MailId,role:data.Role,createdBy:username,createdOn:new Date()},{responseType:'text' as 'json'})
+    return this.http.post(this.baseUrl+"/dashboard/addUser",{accountName:data.AccountName,employeeNo:data.EmployeeId,employeeName:data.EmployeeName,emailId:data.MailId,roles:data.Role,createdBy:username,createdOn:new Date()},{responseType:'text' as 'json'})
   }
 }
