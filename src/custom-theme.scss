@@ -12,7 +12,7 @@ $my-custom-primary-color: (
   500 : #6c5ce7,
   600 : #6454e4,
   700 : #594ae0,
-  800 : #4f41dd,
+  800 : #005cb9,
   900 : #0033c4,
   A100 : #ffffff,
   A200 : #e9e7ff,
@@ -36,7 +36,7 @@ $my-custom-primary-color: (
   )
 );
 
-$my-app-primary: mat-palette($my-custom-primary-color,900);
+$my-app-primary: mat-palette($my-custom-primary-color,800);
 $my-app-accent:  mat-palette($mat-pink, A200, A100, A400);
 $my-app-warn:    mat-palette($mat-red);
 $my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);

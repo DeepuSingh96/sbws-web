@@ -106,4 +106,5 @@ export class RegisterUserComponent implements OnInit {
 }
 //url="/src/assets/images/ult.png";
 url='../../../../assets/images/ult.png';
+
 }
