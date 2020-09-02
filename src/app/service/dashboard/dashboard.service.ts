@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Element} from '../../components/pages/dashboard/dashboard.component';
-
+import { environment } from '../../../environments/environment';
 @Injectable({
   providedIn: 'root'
 })
 export class DashboardService {
-
+  baseUrl = environment.baseUrl;
   constructor(private http:HttpClient) { }
   retrieveDashboard(username)
   {
@@ -19,21 +19,20 @@ export class DashboardService {
     //     .set('Authorization', 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxNDMwMjA4IiwiZXhwIjoxNTk2NzUzMjI5LCJpYXQiOjE1OTY3MTcyMjl9.nLDYsX--EGNc7i-FWx8PsnP73t0FHV44twAJnX14TTo')
     // }
     headers = headers.set('Authorization', 'Basic xzeydyt==');
-    return this.http.get<Element[]>(`http://localhost:8181/dashboard/${username}/allEmployeeDetails`,{headers:headers})
+    return this.http.get<Element[]>(this.baseUrl+`/dashboard/${username}/allEmployeeDetails`,{headers:headers})
   }
 
   retrievedeleteDashboard(username)
   {
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Basic xzeydyt==');
-    return this.http.get<Element[]>(`http://localhost:8181/dashboard/${username}/allEmployeeDetails/deletedStatus`,{headers:headers})
+    return this.http.get<Element[]>(this.baseUrl+`/dashboard/${username}/allEmployeeDetails/deletedStatus`,{headers:headers})
   }
 
   retrievependingDashboard(username)
   {
     let headers = new HttpHeaders();
     headers = headers.set('Authorization', 'Basic xzeydyt==');
-    return this.http.get<Element[]>(`http://localhost:8181/dashboard/${username}/allEmployeeDetails/pendingStatus`,{headers:headers})
+    return this.http.get<Element[]>(this.baseUrl+`/dashboard/${username}/allEmployeeDetails/pendingStatus`,{headers:headers})
   }
-
 }

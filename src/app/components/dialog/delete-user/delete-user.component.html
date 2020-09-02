@@ -1,4 +1,11 @@
-<div>
+<div *ngIf=!deleteStatus>
+    <p>This action can't be taken.The  created user and corresponding lead were only allowed to delete this record</p>
+    <button  mat-raised-button mat-dialog-close color="primary">ok</button>
+    
+    </div>
+    
+
+<div *ngIf=deleteStatus>
     <p>Are you Sure want to delete</p>
     <button mat-raised-button color="primary" class="defaultbackcolorth" (click)="delete()">Yes</button>&nbsp;
     <button mat-button mat-dialog-close mat-raised-button color="primary" class="button defaultbackcolorth">No</button>

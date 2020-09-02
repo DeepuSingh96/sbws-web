@@ -30,7 +30,7 @@ export class AddUserComponent implements OnInit {
       employeeNo: ['', Validators.required],
       employeeName: ['', Validators.required],
       accountId : [sessionStorage.getItem('userAccount'), Validators.required],
-      teamName  : ['', Validators.required],
+ /*     teamName  : ['', Validators.required],
       coId  : ['', Validators.required],
       presentLocation  : ['', Validators.required],
       workLocation  : ['', Validators.required],
@@ -41,7 +41,7 @@ export class AddUserComponent implements OnInit {
       leadSupervisorName  : ['', Validators.required],
       stayingInPg  : ['', Validators.required],
       tcsDesktop  : ['', Validators.required],
-      typeOfInternetConnection  : ['', Validators.required],
+      typeOfInternetConnection  : ['', Validators.required],*/
   });
   }
   
@@ -63,7 +63,7 @@ export class AddUserComponent implements OnInit {
      {
       let resp = this.createSBWSRequest.createrequest(this.addNewEmployee.value).subscribe(
         data =>{
-          if(data==="User request created")
+          if(data==="User request created with the status of pending..")
           {
             alert("User request created");
             this.refreshPage()

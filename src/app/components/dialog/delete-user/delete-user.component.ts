@@ -19,14 +19,16 @@ export class DeleteUserComponent implements OnInit {
     
   ) { }
 
-  username:'';
+  username:string;
+  deleteStatus:boolean;
 
   ngOnInit(): void {
-    
+    this.username=sessionStorage.getItem('authenticaterUser');
+    this.deleteStatus=this.data.deleteStatus;
   }
   delete()
   {
-      let resp = this.deletesbwsrequest.deleterequest("loggedin",this.data.dataKey);
+      let resp = this.deletesbwsrequest.deleterequest(this.username,this.data.dataKey);
       resp.subscribe(
         data=>{
           this.document.defaultView.location.reload();
