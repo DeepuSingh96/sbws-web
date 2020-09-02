@@ -37,7 +37,7 @@ export class HttpInterceptorBasicAuthService implements HttpInterceptor {
               }
             });
 
-
+      console.log('jadkjkdalkl')
     return next.handle(request);
 
   }

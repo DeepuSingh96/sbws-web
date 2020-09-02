@@ -1,17 +1,15 @@
-
 <mat-toolbar color="primary">
-    <span>Upload Excel file</span>
-  </mat-toolbar>
-  <div mat-dialog-content style="padding: 68px 24px;">
-          <div class="float-right" mat-dialog-actions>
-            <div>
-                <input type="file" name="list_name"/>
-              </div>
-          </div>
-    </div>
-    <div>
-      <button  mat-raised-button color="primary">Upload</button>&nbsp;
-      <button mat-button mat-dialog-close mat-raised-button color="primary" class="button">Close</button>
-    </div>
-
-  
+  <span>Upload Excel file</span>
+</mat-toolbar>
+<div mat-dialog-content style="padding: 68px 24px;">
+        <div class="float-right" mat-dialog-actions>
+          <div>
+              <!-- <input type="file" name="list_name"/> -->
+              <input type="file" style="display: inline-block;" (change)="incomingfile($event)" placeholder="Upload file" accept=".xlsx">
+            </div>
+        </div>
+  </div>
+  <div>
+    <button  mat-raised-button color="primary" (click)=Upload()>Upload</button>&nbsp;
+    <button mat-button mat-dialog-close mat-raised-button color="primary" class="button">Close</button>
+  </div>
