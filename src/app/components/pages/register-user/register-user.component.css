@@ -24,7 +24,7 @@
   
   .left{
     left: 0;
-    background-color: #303F9F;
+    background-color: #005cb9;
     
     
   }
@@ -42,7 +42,7 @@
     border-radius: 20px;
   }
   mat-card-title{
-     color: #0033c4;
+     color: #005cb9;
    
   }
   mat-form-field, mat-checkbox {

@@ -50,6 +50,7 @@ export class DashboardComponent {
   username = '';
   userRole='';
   userAccount='';
+  employeeName='';
   deleteCount:number;
   deleteStatus:boolean;
   pendingCount:number;
@@ -59,7 +60,9 @@ export class DashboardComponent {
   ngOnInit() {
     this.username=sessionStorage.getItem('authenticaterUser');
     this.userRole= sessionStorage.getItem('userRole');
-    this.userAccount=sessionStorage.getItem('userAccount')
+    this.userAccount=sessionStorage.getItem('userAccount');
+    this.employeeName = sessionStorage.getItem('employeeName');
+    console.log(sessionStorage.getItem('employeeName'));
     this.refreshDashboard();
   }
 
@@ -95,7 +98,8 @@ export class DashboardComponent {
     const dialogCong = new MatDialogConfig();
     dialogCong.disableClose = true;
     dialogCong.autoFocus = true;
-    dialogCong.width = "70%";
+    dialogCong.width = "65%";
+    dialogCong.height ="30%";
     this.dialog.open(AddUserComponent,dialogCong);
   };
 
