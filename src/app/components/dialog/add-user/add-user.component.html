@@ -5,7 +5,7 @@
   <!-- <span  mat-button mat-dialog-close mat-raised-button class="close">&times;</span> -->
 </mat-toolbar>
 <div class="container" mat-dialog-content  >
-      <form [formGroup]="addNewEmployee" (ngSubmit)="onSubmit()">
+      <form [formGroup]="addNewEmployee">
         <mat-grid-list cols="3" rowHeight="100px">
               <mat-grid-tile>
                 <mat-form-field appearance="outline">
@@ -142,7 +142,7 @@
         </mat-grid-list>
         <div class="float-right" mat-dialog-actions>
           <div class="button-container">
-              <button  mat-raised-button color="primary">Save</button>
+              <button  mat-raised-button color="primary"  (click)="addUserDetail()">Save</button>
               <button mat-button mat-dialog-close mat-raised-button color="primary" class="button" (click)="onReset()">Reset</button>
               <button mat-button mat-dialog-close mat-raised-button color="primary" class="button">Close</button>
             </div>
