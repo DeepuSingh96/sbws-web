@@ -7,3 +7,7 @@ mat-form-field{
 .actions{
     margin-left: 100px;
 }
+.mat-dialog-actions{
+    margin-bottom: -2px;
+   
+  } 

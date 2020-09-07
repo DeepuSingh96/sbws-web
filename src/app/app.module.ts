@@ -27,6 +27,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import { UploadFileComponent } from './components/dialog/upload-file/upload-file.component';
 import { HttpInterceptorBasicAuthService } from './service/http/http-interceptor-basic-auth.service';
+import { ConfirmDialogComponent } from './components/Shared/confirm-dialog/confirm-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,8 @@ import { HttpInterceptorBasicAuthService } from './service/http/http-interceptor
     DeleteUserComponent,
     AdminDashboardComponent,
     ErrorComponent,
-    UploadFileComponent
+    UploadFileComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,

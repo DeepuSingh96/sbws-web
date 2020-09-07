@@ -99,7 +99,7 @@ export class DashboardComponent {
     dialogCong.disableClose = true;
     dialogCong.autoFocus = true;
     dialogCong.width = "65%";
-    dialogCong.height ="30%";
+    dialogCong.height ="38%";
     this.dialog.open(AddUserComponent,dialogCong);
   };
 
@@ -109,6 +109,7 @@ export class DashboardComponent {
         disableClose : true,
         autoFocus : true,
         width : "70%",
+        height :"85%",
         data:{
           dataKey : element,
         }
@@ -151,7 +152,7 @@ export class DashboardComponent {
     const dialogCong = new MatDialogConfig();
     dialogCong.disableClose = true;
     dialogCong.autoFocus = true;
-    dialogCong.width = "70%";
+    dialogCong.width = "45%";
     this.dialog.open(UploadFileComponent,dialogCong);
   };
 

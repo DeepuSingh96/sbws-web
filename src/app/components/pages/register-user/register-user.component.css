@@ -1,40 +1,29 @@
-.login-page {
-    top: 0;
-    margin: 0;
-    padding: 0;
-    width: 65%;
-    height: 100%;
-    display: block;
-    background-color: white;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: fixed;
-    z-index: 1;
-    overflow-x: hidden;
-  }
-  .split{
+
+  /* left image */
+  .left{
     height: 100%;
     width: 35%;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    overflow-x: hidden;
-  }
-  
-  .left{
+    position: absolute;
     left: 0;
-    background-color: #005cb9;
-    
-    
+    background-color: #005cb9;   
   }
+  img{
+    height: 100%;
+    width: 100%;
+
+  }
+
+/* right side */
   .right{
-    right: 0;
-    display: grid;
-    justify-items: center;
+    height: 100%;
+    width: 65%;
+    background-color: #fff;
+    margin: 0%;
     align-items: center;
+    position: absolute;
+    right: 0%;
   }
-  
+  /* matcard */
   mat-card {
     width: 50%;
     height: 66%;
@@ -42,8 +31,7 @@
     border-radius: 20px;
   }
   mat-card-title{
-     color: #005cb9;
-   
+     color: #005cb9;  
   }
   mat-form-field, mat-checkbox {
     width: 60%;
@@ -66,5 +54,62 @@
     border-radius: 5em;
     font-size: 13px;
   }
+  .reset-button{
+    display: block;
+    width: 50%;
+    margin: 20px auto;
+    align-self: center;
+    border-radius: 5em;
+    font-size: 13px;
+  }
+  @media (max-width: 1028px) {
+    .left{
+      height: 100%;
+      position: absolute; 
+      background-color: #005cb9;   
+    }
+    img{
+      height: fit-content;
+      width: fit-content;
+      position: relative;
+      z-index: 0;
   
+    }
+    .right{
+      height: 100%;
+      width: 100%;
+      margin: 0%;
+      display: inline-block;
+      align-items: center;
+      position: absolute;
+      background-image: url(/assets/images/ult.png);
+      background-repeat: no-repeat;
+      background-size: auto;
+    }
+   .mat-elevation-z12{
+      width: 50%;
+      height: 70%;
+      margin: 28% auto 0%;
+      position: relative;
+       left: 20px;
+      padding-top: 25px;
+      border-radius: 20px;
+    }
+    mat-card-title{
+      color: #005cb9;
+
+   }
+   .reset-button{
+    display: block;
+    width: 50%;
+    margin: 10px auto;
+    align-self: center;
+    border-radius: 5em;
+    font-size: 13px;
+  }
+  .signup{
+    margin: 10px auto;
+  }
+  }
+
   

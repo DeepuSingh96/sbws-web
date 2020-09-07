@@ -1,0 +1,30 @@
+
+    .title {
+        font: 500 16px/32px Roboto, "Helvetica Neue", sans-serif;
+        font-style: normal;
+        font-variant-ligatures: normal;
+        font-variant-caps: normal;
+        font-variant-numeric: normal;
+        font-variant-east-asian: normal;
+        font-weight: 200;
+        font-stretch: normal;
+        font-size: 15px;
+        line-height: 32px;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+    }
+
+    .data {
+        font: 500 16px/32px Roboto, "Helvetica Neue", sans-serif;
+        font-style: normal;
+        font-variant-ligatures: normal;
+        font-variant-caps: normal;
+        font-variant-numeric: normal;
+        font-variant-east-asian: normal;
+        font-weight: 500;
+        font-stretch: normal;
+        font-size: 15px;
+        line-height: 32px;
+        font-family: Roboto, "Helvetica Neue", sans-serif;
+        color: #005cb9;
+        
+    }

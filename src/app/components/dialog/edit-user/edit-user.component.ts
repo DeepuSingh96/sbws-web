@@ -25,6 +25,7 @@ export class EditUserComponent implements OnInit {
     private router:Router,
     @Inject(MAT_DIALOG_DATA) public data :  any) { }
 
+  
   Accounts = ["Standard Life","Aviva"];
   WorkModes = ["Personal Laptop","TCS Laptop","TCS Desktop"];
   Supervisors = ["Mohan Ragavendra Rao","Anila","Kavitha","Shwetha"];
@@ -53,6 +54,32 @@ export class EditUserComponent implements OnInit {
         tcsDesktop  : [this.data.dataKey.tcsDesktop, Validators.required],
         typeOfInternetConnection  : [this.data.dataKey.typeOfInternetConnection, Validators.required],
     });
+
+    // Set default values
+    if(this.editEmployee.get('modeOfWorking').value==null){
+      this.editEmployee.controls['modeOfWorking'].setValue(this.WorkModes[2]);
+    }
+    if(this.editEmployee.get('sbwsEnabled').value==null){
+      this.editEmployee.controls['sbwsEnabled'].setValue(this.YesOrNo[0]);
+    }
+    if(this.editEmployee.get('presentLocation').value==null){
+      this.editEmployee.controls['presentLocation'].setValue("Bangalore");
+    }
+    if(this.editEmployee.get('workLocation').value==null){
+      this.editEmployee.controls['workLocation'].setValue("Bangalore");
+    }
+    if(this.editEmployee.get('stayingInPg').value==null){
+      this.editEmployee.controls['stayingInPg'].setValue(this.YesOrNo[1]);
+    }
+    if(this.editEmployee.get('parentUnit').value==null){
+      this.editEmployee.controls['parentUnit'].setValue(this.ParentUnits[0]);
+    }
+    if(this.editEmployee.get('tcsDesktop').value==null){
+      this.editEmployee.controls['tcsDesktop'].setValue(this.YesOrNo[0]);
+    }
+    if(this.editEmployee.get('typeOfInternetConnection').value==null){
+      this.editEmployee.controls['typeOfInternetConnection'].setValue(this.TypeOfInternet[2]);
+    }
   
   }
   
