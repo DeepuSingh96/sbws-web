@@ -11,3 +11,7 @@ h4{
   cursor: pointer;
   
 }
+.mat-dialog-actions{
+  margin-bottom: -2px;
+ 
+} 

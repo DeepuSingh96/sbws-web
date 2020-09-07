@@ -65,7 +65,7 @@ export class AddUserComponent implements OnInit {
         data =>{
           if(data==="User request created with the status of pending..")
           {
-            alert("User request created");
+           // alert("User request created");
             this.refreshPage()
           }
           else

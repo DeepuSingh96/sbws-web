@@ -1,11 +1,14 @@
-<div class="split left">
-    <img src="assets/images/ult.png" height="99.2%" width="100%">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<div class="left">
+    <img src="assets/images/ult.png" >
  </div>
- <div class="login-page right">
+ <div class="right">
    <mat-card class="mat-elevation-z12">
      <mat-card-title class='title' style="text-align:center;" >SBWS</mat-card-title>
-     <p class=mat-small style="color:red" *ngIf=invalidUser>{{errorMessage}}</p>
-     <p class=mat-small style="color:rgb(0, 255, 106)">{{successMessage}}</p>
+     <p class="mat-small" style="color:red" *ngIf=invalidUser>{{errorMessage}}</p>
+     <p class="mat-small" style="color:rgb(0, 255, 106)">{{successMessage}}</p>
      <!--<mat-divider></mat-divider>-->
      <mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
        <mat-tab label="Sign In">
@@ -133,7 +136,7 @@
              <button
                mat-raised-button
                color="primary"
-               class="login-button" (click)="resetPwd()">
+               class="reset-button" (click)="resetPwd()">
                Reset Password
              </button>
            </form>
