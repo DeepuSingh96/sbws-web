@@ -1,5 +1,5 @@
 import {SelectionModel} from '@angular/cdk/collections';
-import {Component, OnInit, ViewChild,Inject} from '@angular/core';
+import {Component, OnInit, ViewChild,Inject,HostListener} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -15,6 +15,9 @@ import { DeleteUserComponent } from '../../dialog/delete-user/delete-user.compon
 import { AdminDashboardComponent } from '../admin-dashboard/admin-dashboard.component';
 import { element } from 'protractor';
 import { DOCUMENT } from '@angular/common';
+
+import { BehaviorSubject, Observable } from 'rxjs';
+import { MatSidenav } from '@angular/material/sidenav';
 // import { TestBed } from '@angular/core/testing';
 
 
@@ -29,6 +32,11 @@ export class DashboardComponent {
   title(title: any) {
     throw new Error("Method not implemented.");
   };
+  showToggle: string;
+  mode: string;
+  openSidenav:boolean;
+  private screenWidth$ = new BehaviorSubject<number>
+    (window.innerWidth);
 
   ELEMENT_DATA: Element[] = [];
   displayedColumns = ['action', 'employeeNo', 'employeeName', 'accountId', 'teamName', 'coId','presentLocation',
@@ -41,6 +49,7 @@ export class DashboardComponent {
 
  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
+  @ViewChild('sidenav') matSidenav: MatSidenav;
 
   constructor(public dialog : MatDialog,private route:ActivatedRoute,
               public authenticate:AuthenticationService,
@@ -64,9 +73,28 @@ export class DashboardComponent {
     this.employeeName = sessionStorage.getItem('employeeName');
     console.log(sessionStorage.getItem('employeeName'));
     this.refreshDashboard();
+
+    this.getScreenWidth().subscribe(width => {
+      if (width < 640) {
+       this.showToggle = 'show';
+       this.mode = 'over';
+       this.openSidenav = false;
+     }
+     else if (width > 640) {
+       this.showToggle = 'hide';
+       this.mode = 'side';
+       this.openSidenav = true;
+     }
+   });
   }
 
-
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.screenWidth$.next(event.target.innerWidth);
+  }
+  getScreenWidth(): Observable<number> {
+    return this.screenWidth$.asObservable();
+  }
   //Load data from database on page load
   refreshDashboard()
   {
