@@ -134,6 +134,15 @@
     </mat-select>
   </mat-form-field>
 </mat-grid-tile> 
+<mat-grid-tile>
+  <mat-form-field appearance="outline">
+      <mat-label>Backup Resource</mat-label>
+      <input matInput type="text" formControlName="backupResource" class="form-control"  />
+      <div *ngIf="submitted && f.backupResource.errors" class="invalid-feedback">
+        <div *ngIf="f.backupResource.errors.required">Backup Resource is required</div>
+    </div>
+  </mat-form-field>
+</mat-grid-tile> 
           <!-- <div class="text-center">
               <button class="btn btn-primary mr-1">Register</button>
               <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancel</button>

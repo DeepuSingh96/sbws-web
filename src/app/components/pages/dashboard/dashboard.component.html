@@ -24,11 +24,11 @@
       <span style="padding-left:15px;" (click)="onUpload()">Import Report</span>
     </mat-toolbar>
     <mat-divider></mat-divider>
-    <mat-toolbar class="toolbar1 cursor">
+    <!--mat-toolbar class="toolbar1 cursor">
       <mat-icon>cloud_download</mat-icon>
       <span style="padding-left:15px;" (click)="exportExcel()">Export Report</span>
-    </mat-toolbar>
-    <mat-divider></mat-divider>
+    </mat-toolbar
+    <mat-divider></mat-divider>-->
     <mat-toolbar class="toolbar1 cursor">
       <mat-icon matBadge={{pendingCount}} matBadgeOverlap=false >pending_actions</mat-icon>
       <span style="padding-left:15px;" (click)="pendingRecord()"> <span *ngIf="pendingStatus; else templateName1" >Pending Records</span><ng-template #templateName1>
@@ -235,7 +235,10 @@
           <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header>Internet Connection </th>
           <td mat-cell *matCellDef="let element"> {{element.typeOfInternetConnection}} </td>
         </ng-container>
-
+        <ng-container matColumnDef="backupResource">
+          <th class="defaultheader" mat-header-cell *matHeaderCellDef mat-sort-header> Backup Resource</th>
+          <td mat-cell *matCellDef="let element"> {{element.backupResource}} </td>
+        </ng-container>
 
         <ng-container matColumnDef="star" stickyEnd>
           <th mat-header-cell *matHeaderCellDef></th>

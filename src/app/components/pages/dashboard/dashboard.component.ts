@@ -40,7 +40,7 @@ export class DashboardComponent {
 
   ELEMENT_DATA: Element[] = [];
   displayedColumns = ['action', 'employeeNo', 'employeeName', 'accountId', 'teamName', 'coId','presentLocation',
-'workLocation','parentUnit','modeOfWorking','assetId','sbwsEnabled','leadSupervisorName','stayingInPg','tcsDesktop','typeOfInternetConnection'];
+'workLocation','parentUnit','modeOfWorking','assetId','sbwsEnabled','leadSupervisorName','stayingInPg','tcsDesktop','typeOfInternetConnection','backupResource'];
 
   dataSource = new MatTableDataSource<Element>(this.ELEMENT_DATA);
   selection = new SelectionModel<Element>(true, []);
@@ -246,21 +246,22 @@ export class DashboardComponent {
    //List of Column want to show on Custome export popup
    customExportColumns = [
  // {name :"position", id: 0},
- {name :"employeeNo", id: 2,isSelected:false},
- {name :"employeeName", id: 3,isSelected:false},
- {name :"accountId", id: 4,isSelected:false},
- {name :"teamName", id: 5,isSelected:false},
- {name :"coId", id: 6,isSelected:false},
- {name :"presentLocation", id: 7,isSelected:false},
- {name :"workLocation", id: 8,isSelected:false},
- {name :"parentUnit", id: 9,isSelected:false},
- {name :"modeOfWorking", id: 10,isSelected:false},
- {name :"assetId", id: 11,isSelected:false},
- {name :"sbwsEnabled", id: 12,isSelected:false},
- {name :"leadSupervisorName", id: 13,isSelected:false},
- {name :"stayingInPg", id: 14,isSelected:false},
- {name :"tcsDesktop", id: 15,isSelected:false},
- {name :"typeOfInternetConnection", id: 16,isSelected:false},
+ {name :"employeeNo", desc :"Employee No" ,id: 2,isSelected:false},
+ {name :"employeeName",desc :"Employee Name" , id: 3,isSelected:false},
+ {name :"accountId", desc :"Account Name" ,id: 4,isSelected:false},
+ {name :"teamName",desc :"Team Name" , id: 5,isSelected:false},
+ {name :"coId", desc :"CO ID" ,id: 6,isSelected:false},
+ {name :"presentLocation", desc :"Present Location" ,id: 7,isSelected:false},
+ {name :"workLocation",desc :"Work Location" , id: 8,isSelected:false},
+ {name :"parentUnit",desc :"Parent Unit" , id: 9,isSelected:false},
+ {name :"modeOfWorking", desc :"Mode of Working" ,id: 10,isSelected:false},
+ {name :"assetId", desc :"Asset ID" ,id: 11,isSelected:false},
+ {name :"sbwsEnabled", desc :"SBWS Enabled" ,id: 12,isSelected:false},
+ {name :"leadSupervisorName",desc :"Lead Supervisor Name" , id: 13,isSelected:false},
+ {name :"stayingInPg",desc :"Staying in PG" , id: 14,isSelected:false},
+ {name :"tcsDesktop", desc :"TCS Desktop" ,id: 15,isSelected:false},
+ {name :"typeOfInternetConnection",desc :"Type Of Internet Conenction" , id: 16,isSelected:false},
+ {name :"backupResource", desc :"Backup Resource" ,id: 17,isSelected:false},
  ];
 
 //helping to add element to generate custom excel report
@@ -385,6 +386,7 @@ export interface Element {
   stayingInPg:string,
   tcsDesktop:string,
   typeOfInternetConnection:string,
+  backupResource:string
 };
 
 // const ELEMENT_DATA: Element[] = [];

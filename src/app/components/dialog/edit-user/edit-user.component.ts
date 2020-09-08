@@ -53,6 +53,7 @@ export class EditUserComponent implements OnInit {
         stayingInPg  : [this.data.dataKey.stayingInPg, Validators.required],
         tcsDesktop  : [this.data.dataKey.tcsDesktop, Validators.required],
         typeOfInternetConnection  : [this.data.dataKey.typeOfInternetConnection, Validators.required],
+        backupResource :  [this.data.dataKey.backupResource, Validators.required]
     });
 
     // Set default values
@@ -80,7 +81,9 @@ export class EditUserComponent implements OnInit {
     if(this.editEmployee.get('typeOfInternetConnection').value==null){
       this.editEmployee.controls['typeOfInternetConnection'].setValue(this.TypeOfInternet[2]);
     }
-  
+    if(this.editEmployee.get('backupResource').value==null){
+      this.editEmployee.controls['backupResource'].setValue("NA");
+    }
   }
   
  // convenience getter for easy access to form fields

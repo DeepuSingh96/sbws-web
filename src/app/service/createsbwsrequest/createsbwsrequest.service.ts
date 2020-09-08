@@ -19,7 +19,7 @@ export class CreatesbwsrequestService {
   public updaterequest(username,employeeNo,upData) {
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(upData);
-    //console.log(body);
+  console.log(body);
     return this.http.put(this.baseUrl+`/dashboard/${username}/usersDetails/${employeeNo}`,body,{'headers':headers});
   }
 
